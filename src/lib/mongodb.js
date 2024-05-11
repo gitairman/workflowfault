@@ -13,9 +13,8 @@ let cachedMongo;
 
 const connectToDB = async () => {
   const mongo = await new MongoClient(uri, options).connect();
-  // Change this to your own DB name of course.
-  // Or better yet, put it in your .env
-  return mongo.db("astro-mongodb");
+  const db = import.meta.env.NODE_ENV === "development" ? import.meta.env.DEV_DB : import.meta.env.PROD_DB;
+  return mongo.db(db);
 };
 
 export const getDB = async () => {

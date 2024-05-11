@@ -25,10 +25,10 @@ export default function CreateUserForm() {
         <input type="text" name="name" required/>
         <label>Email</label>
         <input type="email" name="email" required/>
-        <label>Age</label>
-        <input type="number" name="age" required/>
-        {/* <label>Company</label>
-        <input type="text" name="company" required/> */}
+        <label>Password</label>
+        <input type="password" name="password" required/>
+        <label>Company</label>
+        <input type="text" name="company" required/>
         <button type="submit">Submit</button>
       </form>
     </div>
