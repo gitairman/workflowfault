@@ -13,7 +13,10 @@ export default function LoginForm() {
         body: JSON.stringify(data),
       });
       if (response.ok) {
-        window.location.replace("/users");
+        const responseData = await response.json();
+        localStorage.setItem('token', responseData.token);
+        localStorage.setItem('email', responseData.user.email)
+        window.location.replace("/projects");
       } else {
         const errorData = await response.json();
         setError(errorData.error);
