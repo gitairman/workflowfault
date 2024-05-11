@@ -1,0 +1,26 @@
+{
+  "name": "workflowvault",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^3.3.4",
+    "@astrojs/tailwind": "^5.1.0",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^4.8.2",
+    "mongodb": "^6.6.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.3"
+  },
+  "devDependencies": {
+    "@astrojs/node": "^8.2.5"
+  }
+}
