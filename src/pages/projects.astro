@@ -1,7 +1,26 @@
 ---
+import { getAllProjects } from '../lib/projects';
 import Layout from '../layouts/Layout.astro';
+import Modal from './components/_NewProjectModal';
+import Card from '../components/Card.astro';
+const projects = await getAllProjects();
+if (!projects) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Not found",
+  });
+}
 ---
 
 <Layout title="WorkFlowVault">
 	<h1 class="text-4xl">My Projects</h1>
+	<ul>
+    {
+      projects.map((projects) => (
+			<Card href="" title={projects.title} body={`Due ${projects.end}`} />
+      ))
+    }
+  </ul>
+	<Modal client:idle/>
 </Layout>
+
