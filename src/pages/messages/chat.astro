@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ChatController from "../../controllers/chat";
-
+// import ChatBoxSSE from "../components/_ChatBoxSSE"
 const messages = await ChatController.getInstance().getMessages();
 ---
 
@@ -10,7 +10,6 @@ const messages = await ChatController.getInstance().getMessages();
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById("chat");
     const input = document.getElementById("message");
-
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       fetch("/api/chat", {
@@ -23,20 +22,22 @@ const messages = await ChatController.getInstance().getMessages();
       input.value = "";
     });
 
-    const eventSource = new EventSource('/api/stream');
+        const eventSource = new EventSource('/api/stream');
     eventSource.onmessage = (event) => {
       const messages = document.getElementById('messages');
       const li = document.createElement('li');
       li.innerText = JSON.parse(event.data);
       messages.appendChild(li);
     };
-
+    eventSource.onerror = (err) => {
+        console.log("EventSource error", err);
+      };
   });
 </script>
   <main>
     <h1>Chat</h1>
     <ul id="messages">
-        {messages.map((m: {content: string}) => <li>{m.content}</li>)}
+      {messages.map((m: {content: string}) => <li>{m.content}</li>)}
     </ul>
     <form id="chat">
       <input id="message" type="text" />

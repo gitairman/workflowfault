@@ -33,7 +33,6 @@ export default class ChatController {
 
   public async addMessage(message: string): Promise<void> {
     await createMessage({ content: message });
-    this.messages.push(message);
     this.emitter.emit('message', message);
   }
 }
