@@ -41,5 +41,5 @@ export const Users = async () => {
 
 export const Messages = async () => {
   const db = await getDB();
-  return db.collection("messages");
+  return db.collection('messages');
 }

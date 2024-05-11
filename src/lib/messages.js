@@ -7,7 +7,6 @@ export const getAllMessages = async () => {
 };
 
 export const createMessage = async (newMsg) => {
-  // console.log("inside createMessage");
   const message = await (await Messages()).insertOne(newMsg);
   return message;
 };
