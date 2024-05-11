@@ -2,7 +2,7 @@
 
 import { createUser, getAllUsers } from "../../lib/users";
 
-export const get = async () => {
+export const GET = async () => {
   const users = await getAllUsers();
   if (!users) {
     return new Response(null, {
@@ -16,7 +16,7 @@ export const get = async () => {
   });
 };
 
-export const post = async ({ request }) => {
+export const POST = async ({ request }) => {
   const newUser = await request.json();
   const user = await createUser(newUser);
   return new Response(JSON.stringify(user), {

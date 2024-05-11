@@ -1,9 +1,9 @@
 export default function Nav() {
   return(
     <nav>
-      <h1>Logo</h1>
+      <a href="/">Logo</a>
       <a>Login</a>
-      <a href="users/create">Register</a>
+      <a href="/users/create">Register</a>
     </nav>
   )
 }

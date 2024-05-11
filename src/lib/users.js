@@ -7,6 +7,6 @@ export const getAllUsers = async () => {
 };
 
 export const createUser = async (newUser) => {
-  const user = await (await Users()).insert(newUser);
+  const user = await (await Users()).insertOne(newUser);
   return user;
 };
