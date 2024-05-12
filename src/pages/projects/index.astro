@@ -1,8 +1,8 @@
 ---
-import { getAllProjects } from '../lib/projects';
-import Layout from '../layouts/Layout.astro';
-import Modal from './components/_NewProjectModal';
-import Card from '../components/Card.astro';
+import { getAllProjects } from '../../lib/projects';
+import Layout from '../../layouts/Layout.astro';
+import Modal from '../components/_NewProjectModal';
+import Card from '../../components/Card.astro';
 
 const projects = await getAllProjects();
 if (!projects) {
