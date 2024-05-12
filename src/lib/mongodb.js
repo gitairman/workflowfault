@@ -39,7 +39,15 @@ export const Users = async () => {
   return db.collection("users");
 };
 
+export const Messages = async () => {
+  const db = await getDB();
+  return db.collection('messages');
+}
 export const Projects = async () => {
   const db = await getDB();
   return db.collection("projects");
 }
+export const Tasks = async () => {
+  const db = await getDB();
+  return db.collection("tasks");
+};
