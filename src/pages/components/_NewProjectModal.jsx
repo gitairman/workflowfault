@@ -66,8 +66,8 @@ export default function Modal() {
               <input type="text" name="title" required/>
               <label htmlFor="description">Description</label>
               <input type="text" name="description" required/>
-              <label htmlFor="start-date">Start Date</label>
-              <input type="date" name="start-date" />
+              <label htmlFor="start">Start Date</label>
+              <input type="date" name="start" />
               <label htmlFor="end">End Date</label>
               <input type="date" name="end"/>
               <label htmlFor="users">Select Members</label>

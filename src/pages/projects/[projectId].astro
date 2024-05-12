@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getProjectById } from '../../lib/projects';
+const { params } = Astro;
+const projectId = params.projectId;
+
+
+const project = await getProjectById(projectId);
+if (!project) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Project not found",
+  });
+}
+---
+
+<Layout title="Project Details">
+  <h1 class="text-3xl">Project Title: {project.title}</h1>
+  <p>Project Description: {project.description}</p>
+  <p>Project Start Date: {project.start}</p>
+  <p>Project End Date: {project.end}</p>
+  <ul>Project Members:
+    {project.users.map((user) => (
+      <a href="/users">{user}</a>
+    ))}
+  </ul>
+</Layout>
+  
