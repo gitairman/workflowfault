@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Modal() {
   const [isOpen, setIsOpen] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [selectedUsers, setSelectedUsers] = useState([]);
+
+  useEffect(() => {
+    retrieveUsers();
+  }, []);
 
   const openModal = () => {
     setIsOpen(true);
@@ -19,6 +25,7 @@ export default function Modal() {
       const [key, value] = field;
       data[key] = value;
     }
+    data['users'] = Array.from(selectedUsers, user => user.email);
     try {
       await fetch("/api/projects", {
         method: "POST",
@@ -27,6 +34,20 @@ export default function Modal() {
       window.location.replace("/projects");
     } catch (error) {
       alert("Error creating your project.");
+    }
+  };
+
+  const retrieveUsers = async () => {
+    try {
+      const response = await fetch("/api/users");
+      if (response.ok) {
+        const usersData = await response.json();
+        setUsers(usersData);
+      } else {
+        throw new Error('Failed to fetch users');
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -41,14 +62,18 @@ export default function Modal() {
             </span>
             <p>Modal content goes here...</p>
             <form onSubmit={submitHandler}>
-              <label>Title</label>
+              <label htmlFor="title">Title</label>
               <input type="text" name="title" required/>
-              <label>Description</label>
+              <label htmlFor="description">Description</label>
               <input type="text" name="description" required/>
-              <label>Start Date</label>
+              <label htmlFor="start-date">Start Date</label>
               <input type="date" name="start-date" />
-              <label>End Date</label>
+              <label htmlFor="end">End Date</label>
               <input type="date" name="end"/>
+              <label htmlFor="users">Select Members</label>
+              <select name="users" multiple onChange={(e) => setSelectedUsers(Array.from(e.target.selectedOptions, option => users.find(user => user.email === option.value)))}>
+                {users.map((user) => <option key={user.email} value={user.email}>{user.name}</option>)}
+              </select>
               <button type="submit">Submit</button>
             </form>
           </div>

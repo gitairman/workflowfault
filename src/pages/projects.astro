@@ -3,6 +3,7 @@ import { getAllProjects } from '../lib/projects';
 import Layout from '../layouts/Layout.astro';
 import Modal from './components/_NewProjectModal';
 import Card from '../components/Card.astro';
+
 const projects = await getAllProjects();
 if (!projects) {
   return new Response(null, {
@@ -11,7 +12,12 @@ if (!projects) {
   });
 }
 ---
-
+<script>
+	const token = localStorage.getItem('token');
+	if(!token) {
+		window.location.replace('/login');
+	}
+</script>
 <Layout title="WorkFlowVault">
 	<h1 class="text-4xl">My Projects</h1>
 	<ul>
