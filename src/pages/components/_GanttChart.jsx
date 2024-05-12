@@ -26,7 +26,10 @@ export default function GanttChart() {
     const formData = new FormData(e.target);
     const data = formData
       .entries()
-      .reduce((a, [key, val]) => ({ ...a, [key]: val }), { progress: 50 });
+      .reduce((a, [key, val]) => ({ ...a, [key]: val }), {
+        progress: 50,
+        id: String(tasks.length + 1),
+      });
     console.log(data);
     await fetch('/api/tasks', {
       method: 'POST',

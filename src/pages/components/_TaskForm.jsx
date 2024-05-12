@@ -1,5 +1,4 @@
 export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks, handleSubmit }) {
-  const options = tasks.reduce((p, t) => [...p, t.name], []);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -39,9 +38,9 @@ export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks,
       <label htmlFor="dependencies">Dependencies:</label>
       <select name="dependencies" id="dependencies">
         <option value="default">-----Select One-----</option>
-        {options.map((o, i) => (
-          <option key={i} value={o}>
-            {o}
+        {tasks.map((t) => (
+          <option key={t._id} value={t.id}>
+            {t.name}
           </option>
         ))}
       </select><br />
