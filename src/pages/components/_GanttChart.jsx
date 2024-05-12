@@ -11,7 +11,13 @@ export default function GanttChart() {
       const tasks = await response.json();
 
       setTasks(tasks);
-      let ganttChart = new Gantt('#gantt', tasks, {});
+      const options = {
+        bar_height: 25, // height of the task bar
+        bar_corner_radius: 20, // border radius of bar
+        arrow_curve: 10, // curve of the arrow
+        padding: 20,
+      };
+      let ganttChart = new Gantt('#gantt', tasks, options);
     })();
   }, [newTask]);
 
@@ -20,7 +26,7 @@ export default function GanttChart() {
     const formData = new FormData(e.target);
     const data = formData
       .entries()
-      .reduce((a, [key, val]) => ({ ...a, [key]: val }), { progress: 0 });
+      .reduce((a, [key, val]) => ({ ...a, [key]: val }), { progress: 50 });
     console.log(data);
     await fetch('/api/tasks', {
       method: 'POST',
@@ -30,14 +36,33 @@ export default function GanttChart() {
     setNewTask(!newTask);
   };
 
+  const styles = (
+    <>
+      <link
+        rel="stylesheet"
+        href="node_modules/frappe-gantt/dist/frappe-gantt.css"
+      />
+      <style>
+        {` 
+    .gantt .bar-label {
+      font-size: 1.3em;
+      }
+    .gantt .bar {
+      fill: grey;
+    }
+    svg {
+      margin-bottom: -100px;
+    }
+      `}
+      </style>
+    </>
+  );
+
   return (
     <>
       <div>
         <script src="node_modules/frappe-gantt/dist/frappe-gantt.min.js" />
-        <link
-          rel="stylesheet"
-          href="node_modules/frappe-gantt/dist/frappe-gantt.min.css"
-        />
+        {styles}
         <svg id="gantt"></svg>
       </div>
       <TaskForm tasks={tasks} handleSubmit={handleSubmit} client:load />

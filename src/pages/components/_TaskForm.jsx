@@ -1,4 +1,4 @@
-export default function TaskForm({ tasks, handleSubmit }) {
+export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks, handleSubmit }) {
   const options = tasks.reduce((p, t) => [...p, t.name], []);
 
   return (
@@ -19,10 +19,39 @@ export default function TaskForm({ tasks, handleSubmit }) {
       <br />
       <input name="end" id="end" />
       <br />
+      <fieldset>
+        <div>
+          Priority: High{' '}
+          <input type="radio" id="priority1" name="priority" value="1" />
+          <label htmlFor="priority1"> 1 </label>
+          <input
+            type="radio"
+            id="priority2"
+            name="priority"
+            value="2"
+            defaultChecked
+          />
+          <label htmlFor="priority2"> 2 </label>
+          <input type="radio" id="priority3" name="priority" value="3" />
+          <label htmlFor="priority3"> 3 </label> Low
+        </div>
+      </fieldset>
       <label htmlFor="dependencies">Dependencies:</label>
       <select name="dependencies" id="dependencies">
+        <option value="default">-----Select One-----</option>
         {options.map((o, i) => (
-          <option key={i} value={o}>{o}</option>
+          <option key={i} value={o}>
+            {o}
+          </option>
+        ))}
+      </select><br />
+      <label htmlFor="assigned_to">Assigned To: </label>
+      <select name="assigned_to" id="assigned_to">
+        <option value="default">-----Select One-----</option>
+        {users.map((u, i) => (
+          <option key={i} value={u}>
+            {u}
+          </option>
         ))}
       </select>
       <br />
