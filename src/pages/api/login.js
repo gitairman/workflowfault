@@ -1,4 +1,5 @@
-import { loginUser } from "../../lib/users";
+import { loginUser, generateSessionToken } from "../../lib/users";
+
 
 export const POST = async ({ request }) => {
   const {email, password} = await request.json();
@@ -8,7 +9,8 @@ export const POST = async ({ request }) => {
       status: 404,
     });
   }
-  return new Response(JSON.stringify(user), {
+  const token = generateSessionToken(user);
+  return new Response(JSON.stringify({token, user}), {
     status: 200,
   });
 };

@@ -1,5 +1,6 @@
 // /src/lib/users.js
 import { Users } from "./mongodb";
+import jwt from 'jsonwebtoken';
 
 export const getAllUsers = async () => {
   const users = await (await Users()).find({}).toArray();
@@ -12,12 +13,11 @@ export const createUser = async (newUser) => {
 };
 
 export const loginUser = async (email, password) => {
-  // Find the user by email
   const user = await (await Users()).findOne({ email: email });
   if (user) {
     // Here, you would typically compare the hashed password stored in the database
     // with the hashed version of the password provided by the user
-    // For security reasons, passwords should be hashed and securely compared
+
     // For demonstration purposes, assuming the password is stored in plain text
     if (user.password === password) {
       return user; // User authenticated successfully
@@ -28,3 +28,20 @@ export const loginUser = async (email, password) => {
     return null; // User not found
   }
 };
+
+export const verifySessionToken = async (token) => {
+  try {
+    const secretKey = import.meta.env.AUTH_SECRET;
+    const decoded = jwt.verify(token, secretKey);
+    return decoded;
+  } catch (error) {
+    throw new Error('Session token verification failed');
+  }
+}
+
+export const generateSessionToken = (user) => {
+  const payload = { user };
+  const secretKey = import.meta.env.AUTH_SECRET;
+  const token = jwt.sign(payload, secretKey);
+  return token;
+}
