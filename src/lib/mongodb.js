@@ -38,7 +38,6 @@ export const Users = async () => {
   const db = await getDB();
   return db.collection("users");
 };
-
 export const Messages = async () => {
   const db = await getDB();
   return db.collection('messages');

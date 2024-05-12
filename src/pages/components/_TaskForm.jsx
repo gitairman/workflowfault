@@ -20,19 +20,18 @@ export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks,
       <br />
       <fieldset>
         <div>
-          Priority: High{' '}
-          <input type="radio" id="priority1" name="priority" value="1" />
-          <label htmlFor="priority1"> 1 </label>
+          Priority: <input type="radio" id="priority1" name="priority" value="high" />
+          <label htmlFor="priority1"> High </label>
           <input
             type="radio"
             id="priority2"
             name="priority"
-            value="2"
+            value="med"
             defaultChecked
           />
-          <label htmlFor="priority2"> 2 </label>
-          <input type="radio" id="priority3" name="priority" value="3" />
-          <label htmlFor="priority3"> 3 </label> Low
+          <label htmlFor="priority2"> Medium </label>
+          <input type="radio" id="priority3" name="priority" value="low" />
+          <label htmlFor="priority3"> Low </label>
         </div>
       </fieldset>
       <label htmlFor="dependencies">Dependencies:</label>
