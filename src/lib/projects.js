@@ -8,9 +8,7 @@ export const getAllProjects = async () => {
 
 export const getProjectById = async (projectId) => {
   var id = new ObjectId(projectId);
-  console.log(projectId);
   const project = await (await Projects()).findOne({ _id: id})
-  console.log(project);
   return project
 }
 

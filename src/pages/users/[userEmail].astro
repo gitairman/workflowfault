@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getUserByEmail } from '../../lib/users';
+const { params } = Astro;
+const userEmail = params.userEmail;
+
+const user = await getUserByEmail(userEmail);
+if(!user) {
+  return new Response(null, {
+    status:404,
+    statusText: "User not found",
+  });
+}
+
+---
+
+<Layout title="User">
+  <h1 class="text-3xl">User information:</h1>
+  <p>User Name: {user.name}</p>
+  <p>User Company: {user.company}</p>
+  <p>User Email: {user.email}</p>
+</Layout>

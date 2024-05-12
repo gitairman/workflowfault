@@ -72,7 +72,7 @@ export default function Modal() {
               <input type="date" name="end"/>
               <label htmlFor="users">Select Members</label>
               <select name="users" multiple onChange={(e) => setSelectedUsers(Array.from(e.target.selectedOptions, option => users.find(user => user.email === option.value)))}>
-                {users.map((user) => <option key={user.email} value={user.email}>{user.name}</option>)}
+                {users.map((user) => <option key={user.email} value={[user.email, user._id]}>{user.name}</option>)}
               </select>
               <button type="submit">Submit</button>
             </form>

@@ -21,7 +21,7 @@ if (!project) {
   <p>Project End Date: {project.end}</p>
   <ul>Project Members:
     {project.users.map((user) => (
-      <a href="/users">{user}</a>
+      <a href={`/users/${user}`}>{user}</a>
     ))}
   </ul>
 </Layout>

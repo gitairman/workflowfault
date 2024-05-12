@@ -1,11 +1,17 @@
 // /src/lib/users.js
 import { Users } from "./mongodb";
+import { ObjectId } from 'mongodb';
 import jwt from 'jsonwebtoken';
 
 export const getAllUsers = async () => {
   const users = await (await Users()).find({}).toArray();
   return users;
 };
+
+export const getUserByEmail = async (userEmail) => {
+  const user = await (await Users()).findOne({ email: userEmail})
+  return user
+}
 
 export const createUser = async (newUser) => {
   const user = await (await Users()).insertOne(newUser);
