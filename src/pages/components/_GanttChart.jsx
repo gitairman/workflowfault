@@ -34,6 +34,10 @@ export default function GanttChart() {
     <>
       <div>
         <script src="node_modules/frappe-gantt/dist/frappe-gantt.min.js" />
+        <link
+          rel="stylesheet"
+          href="node_modules/frappe-gantt/dist/frappe-gantt.min.css"
+        />
         <svg id="gantt"></svg>
       </div>
       <TaskForm tasks={tasks} handleSubmit={handleSubmit} client:load />
