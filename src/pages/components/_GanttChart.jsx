@@ -4,6 +4,7 @@ import TaskForm from './_TaskForm';
 export default function GanttChart() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState(true);
+  const [showTaskForm, setShowTaskForm] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -24,19 +25,17 @@ export default function GanttChart() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const data = formData
-      .entries()
-      .reduce(
-        (a, [key, val]) => ({
-          ...a,
-          [key]: val,
-          ...(key === 'priority' ? { custom_class: val } : {}),
-        }),
-        {
-          progress: 50,
-          id: String(tasks.length + 1),
-        }
-      );
+    const data = formData.entries().reduce(
+      (a, [key, val]) => ({
+        ...a,
+        [key]: val,
+        ...(key === 'priority' ? { custom_class: val } : {}),
+      }),
+      {
+        progress: 50,
+        id: String(tasks.length + 1),
+      }
+    );
     console.log(data);
     await fetch('/api/tasks', {
       method: 'POST',
@@ -126,7 +125,14 @@ export default function GanttChart() {
         {styles}
         <svg id="gantt"></svg>
       </div>
-      <TaskForm tasks={tasks} handleSubmit={handleSubmit} client:load />
+      <div className="mx-auto flex flex-col w-fit">
+      {showTaskForm && (
+        <TaskForm tasks={tasks} handleSubmit={handleSubmit} client:load />
+      )}
+      <button onClick={() => setShowTaskForm(!showTaskForm)} className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
+        {showTaskForm ? 'Cancel' : 'New Task'}
+      </button>
+      </div>
     </>
   );
 }
