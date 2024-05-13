@@ -15,16 +15,19 @@ export default function ChatBoxSSE() {
     };
     (async () => {
       await retrieveMessages();
+      console.log(eventSource);
     })();
 
-    const eventSource = new EventSource('/api/stream');
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    const eventSource = new EventSource('/api/stream', {signal});
     eventSource.onopen = () => console.log('>>> Connection opened!');
     eventSource.onmessage = async (event) => await retrieveMessages();
     eventSource.onerror = () => console.log('Error opening connection');
 
     window.onbeforeunload = (e) => {
-      e.preventDefault();
-      console.log(eventSource);
+      eventSource.cancel();
     };
 
     return () => eventSource.close();
