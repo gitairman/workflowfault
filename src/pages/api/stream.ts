@@ -3,6 +3,7 @@ import type { APIRoute } from 'astro';
 import ChatController from '../../controllers/chat';
 
 export const GET: APIRoute = async ({ request }) => {
+  const ev = new Event('abort');
   console.log('inside APIRoute', request)
   const body = new ReadableStream({
     start(controller) {
@@ -19,10 +20,15 @@ export const GET: APIRoute = async ({ request }) => {
 
       request.signal.addEventListener('abort', () => {
         // Unsubscribe from new messages
+        console.log('inside abort');
         ChatController.getInstance().unsubscribe(sendEvent);
-        controller.close();
+        // controller.close();
       });
     },
+    cancel() {
+      console.log('inside cancel')
+      request.signal.dispatchEvent(ev);
+    }
   });
 
   console.log(body);
