@@ -12,6 +12,11 @@ export const getProjectById = async (projectId) => {
   return project
 }
 
+export const getProjectByUser = async(userEmail) => {
+  const projects = await (await Projects()).find({ "users.userEmail": userEmail }).toArray();
+  return projects;
+}
+
 export const createProject = async (newProject) => {
   const project = await (await Projects()).insertOne(newProject);
   return project;

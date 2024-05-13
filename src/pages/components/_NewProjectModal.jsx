@@ -64,24 +64,24 @@ export default function Modal() {
               <form onSubmit={submitHandler}>
                 <div className="mb-4">
                   <label htmlFor="project-title" className="block text-gray-700 text-sm font-bold mb-2">Title</label>
-                  <input type="text" id="project-title" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required/>
+                  <input type="text" name="title" id="title" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required/>
                 </div>
                 <div className="mb-4">
                   <label htmlFor="project-description" className="block text-gray-700 text-sm font-bold mb-2">Description</label>
-                  <input type="text" id="project-description" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required/>
+                  <input type="text" name="description" id="project-description" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required/>
                 </div>  
                 <div className="mb-4">
                   <label htmlFor="project-start" className="block text-gray-700 text-sm font-bold mb-2">Start Date</label>
-                  <input type="date" id="project-start" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                  <input type="date" name="start" id="project-start" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                 </div>
                 <div className="mb-4">
                   <label htmlFor="project-end" className="block text-gray-700 text-sm font-bold mb-2">End Date</label>
-                  <input type="date" id="project-end"className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                  <input type="date" name="end" id="project-end"className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
                 </div>
-                <div className="mb-4" className="block text-gray-700 text-sm font-bold mb-2">
-                  <label htmlFor="users">Select Members</label>
+                <div className="mb-4">
+                  <label htmlFor="users" className="block text-gray-700 text-sm font-bold mb-2">Select Members</label>
                   <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="users" multiple onChange={(e) => setSelectedUsers(Array.from(e.target.selectedOptions, option => users.find(user => user.email === option.value)))}>
-                    {users.map((user) => <option key={user._id} value={[user.email, user._id]}>{user.name}</option>)}
+                    {users.map((user) => <option key={user._id} value={[user.email]}>{user.name}</option>)}
                   </select>
                 </div>
                 <div className="flex justify-center">
