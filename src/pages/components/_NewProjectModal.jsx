@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Modal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,29 +53,42 @@ export default function Modal() {
 
   return (
     <>
-      <button onClick={openModal}>Create New Project</button>
+    <button onClick={openModal}>Create New Project</button>
       {isOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={closeModal}>
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="relative bg-white p-6 rounded-md">
+            <span className="close cursor-pointer" onClick={closeModal}>
               &times;
             </span>
-            <p>Modal content goes here...</p>
-            <form onSubmit={submitHandler}>
-              <label htmlFor="title">Title</label>
-              <input type="text" name="title" required/>
-              <label htmlFor="description">Description</label>
-              <input type="text" name="description" required/>
-              <label htmlFor="start">Start Date</label>
-              <input type="date" name="start" />
-              <label htmlFor="end">End Date</label>
-              <input type="date" name="end"/>
-              <label htmlFor="users">Select Members</label>
-              <select name="users" multiple onChange={(e) => setSelectedUsers(Array.from(e.target.selectedOptions, option => users.find(user => user.email === option.value)))}>
-                {users.map((user) => <option key={user.email} value={[user.email, user._id]}>{user.name}</option>)}
-              </select>
-              <button type="submit">Submit</button>
+            <div className="w-full max-w-s">
+              <form onSubmit={submitHandler}>
+                <div className="mb-4">
+                  <label htmlFor="project-title" className="block text-gray-700 text-sm font-bold mb-2">Title</label>
+                  <input type="text" id="project-title" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required/>
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="project-description" className="block text-gray-700 text-sm font-bold mb-2">Description</label>
+                  <input type="text" id="project-description" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required/>
+                </div>  
+                <div className="mb-4">
+                  <label htmlFor="project-start" className="block text-gray-700 text-sm font-bold mb-2">Start Date</label>
+                  <input type="date" id="project-start" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="project-end" className="block text-gray-700 text-sm font-bold mb-2">End Date</label>
+                  <input type="date" id="project-end"className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                </div>
+                <div className="mb-4" className="block text-gray-700 text-sm font-bold mb-2">
+                  <label htmlFor="users">Select Members</label>
+                  <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="users" multiple onChange={(e) => setSelectedUsers(Array.from(e.target.selectedOptions, option => users.find(user => user.email === option.value)))}>
+                    {users.map((user) => <option key={user._id} value={[user.email, user._id]}>{user.name}</option>)}
+                  </select>
+                </div>
+                <div className="flex justify-center">
+                  <button type="submit" className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+                </div>
             </form>
+            </div>
           </div>
         </div>
       )}
