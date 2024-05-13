@@ -14,8 +14,8 @@ export default function Nav() {
   
   const logout= () => {
     localStorage.removeItem('token');
-    setIsLoggedIn(false);
     localStorage.removeItem('email');
+    setIsLoggedIn(false);
     window.location.replace('/login');
   }
 

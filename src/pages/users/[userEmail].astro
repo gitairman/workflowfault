@@ -13,6 +13,13 @@ if(!user) {
 }
 
 ---
+<script>
+	const token = localStorage.getItem('token');
+	if(!token) {
+		window.location.replace('/login');
+    alert("You must be logged in to view this page.")
+	}
+</script>
 
 <Layout title="User">
   <h1 class="text-3xl">User information:</h1>

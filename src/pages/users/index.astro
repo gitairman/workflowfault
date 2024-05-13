@@ -9,6 +9,13 @@ if (!users) {
   });
 }
 ---
+<script>
+	const token = localStorage.getItem('token');
+	if(!token) {
+		window.location.replace('/login');
+    alert("You must be logged in to view this page.")
+	}
+</script>
 
 <Layout title="Users">
   <h1>Users</h1>
