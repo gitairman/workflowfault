@@ -13,13 +13,21 @@ export default function ChatBoxSSE() {
       console.log(messages);
       setMessages(messages);
     };
+    (async () => {
+      await retrieveMessages();
+    })();
 
-    (async () => await retrieveMessages())();
-    
     const eventSource = new EventSource('/api/stream');
     eventSource.onopen = () => console.log('>>> Connection opened!');
     eventSource.onmessage = async (event) => await retrieveMessages();
-    // return () => eventSource.close();
+    eventSource.onerror = () => console.log('Error opening connection');
+
+    window.onbeforeunload = (e) => {
+      e.preventDefault();
+      console.log(eventSource);
+    };
+
+    return () => eventSource.close();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -47,6 +55,7 @@ export default function ChatBoxSSE() {
           onChange={({ target }) => setMessage(target.value)}
           id="message"
           type="text"
+          value={message}
         />
         <button type="submit">Send</button>
       </form>

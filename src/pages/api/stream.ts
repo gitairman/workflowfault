@@ -3,6 +3,7 @@ import type { APIRoute } from 'astro';
 import ChatController from '../../controllers/chat';
 
 export const GET: APIRoute = async ({ request }) => {
+  console.log('inside APIRoute', request)
   const body = new ReadableStream({
     start(controller) {
       const encoder = new TextEncoder();
@@ -24,6 +25,7 @@ export const GET: APIRoute = async ({ request }) => {
     },
   });
 
+  console.log(body);
   return new Response(body, {
     headers: {
       'Content-Type': 'text/event-stream',
