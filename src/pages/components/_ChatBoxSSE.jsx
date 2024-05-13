@@ -54,32 +54,16 @@ export default function ChatBoxSSE() {
       <div className="bg-white shadow-md rounded-lg max-w-lg w-full">
         <div className="p-4 border-b bg-blue-500 text-white rounded-t-lg flex justify-between items-center">
           <p className="text-lg font-semibold">Project Chat</p>
-
-          <button
-            id="close-chat"
-            className="text-gray-300 hover:text-gray-400 focus:outline-none focus:text-gray-400">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
         </div>
         <div id="chatbox" className="p-4 h-80 overflow-y-auto">
           <ul id="messages" className="mb-2 text-right flex flex-col items-end">
             {messages.map((m) => (
-              <li
-                key={m._id}
-                className="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block w-fit my-2">
-                {m.content}
-              </li>
+              <div className="mb-2 text-right" key={m._id}>
+                <span className="mr-3">{new Date(m.created_at).toLocaleString()} - "User said:"</span>
+                <p className="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block">
+                  {m.content}
+                </p>
+              </div>
             ))}
           </ul>
         </div>
