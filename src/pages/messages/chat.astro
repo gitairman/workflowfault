@@ -1,16 +1,19 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import ChatController from "../../controllers/chat";
+// import ChatController from "../../controllers/chat";
+import ChatBoxSSE from "../components/_ChatBoxSSE";
 // import ChatBoxSSE from "../components/_ChatBoxSSE"
-const messages = await ChatController.getInstance().getMessages();
+// const messages = await ChatController.getInstance().getMessages();
 ---
 
 <Layout title="Chat Server">
-  <script is:inline>
+  <ChatBoxSSE client:load/>
+  <!-- <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById("chat");
     const input = document.getElementById("message");
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
+      console.log('inside post')
       e.preventDefault();
       fetch("/api/chat", {
         method: "POST",
@@ -43,5 +46,5 @@ const messages = await ChatController.getInstance().getMessages();
       <input id="message" type="text" />
       <button type="submit">Send</button>
     </form>
-  </main>
+  </main> -->
 </Layout>

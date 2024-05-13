@@ -5,6 +5,7 @@ import { createMessage, getAllMessages } from '../lib/messages';
 
 export default class ChatController {
   private static instance: ChatController;
+  static body: BodyInit = null;
   private constructor() {}
 
   static getInstance(): ChatController {
@@ -24,15 +25,19 @@ export default class ChatController {
   private emitter = new EventEmitter();
 
   public subscribe(callback: (message: string) => void): void {
+    // console.log(this.emitter.on);
     this.emitter.on('message', callback);
+    console.log(this.emitter.listeners('message'));
   }
 
   public unsubscribe(callback: (message: string) => void): void {
+    console.log('unsubscribe');
     this.emitter.off('message', callback);
   }
 
   public async addMessage(message: string): Promise<void> {
-    await createMessage({ content: message });
+    await createMessage({ content: message, created_at: Date.now() });
+    console.log("sent message to database");
     this.emitter.emit('message', message);
   }
 }
