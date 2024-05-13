@@ -29,21 +29,22 @@ export default function LoginForm() {
   };
   return (
     <div className="flex justify-center items-center h-screen">
-          <div class="w-full max-w-xs">
-      <form onSubmit={submitHandler} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"> 
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email</label>
-          <input type="email" name="email" placeholder="Email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required/>
-        </div>
-        <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="***************" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required/>
-        <div class="flex items-center justify-evenly">
-        <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
-        <a href="/register" className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</a>
-        </div>
-      </form>
+      <div class="w-full max-w-xs">
+        <form onSubmit={submitHandler} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"> 
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email</label>
+            <input type="email" name="email" placeholder="Email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required/>
+          </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="***************" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required/>
+          </div>
+          <div class="flex items-center justify-evenly">
+            <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+            <a href="/register" className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</a>
+          </div>
+        </form>
+      </div>
     </div>
-    </div>
-
   )
 }
