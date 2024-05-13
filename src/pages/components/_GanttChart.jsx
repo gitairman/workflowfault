@@ -22,7 +22,7 @@ export default function GanttChart() {
     })();
   }, [newTask]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, sD, eD) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = formData.entries().reduce(
@@ -34,6 +34,8 @@ export default function GanttChart() {
       {
         progress: 50,
         id: String(tasks.length + 1),
+        start: sD.toISOString().slice(0, 10),
+        end: eD.toISOString().slice(0, 10),
       }
     );
     console.log(data);
@@ -65,53 +67,53 @@ export default function GanttChart() {
     /** bar and bar progress of the different color */
 /* initial state */
 .gantt .bar-wrapper.high .bar {
-  fill: hsl(240, 50%, 57%);
+  fill: hsl(356, 100%, 41%);
 }
 .gantt .bar-wrapper.high .bar-progress {
-  fill: hsl(240, 100%, 77%);
+  fill: hsl(2, 100%, 77%);
 }
 .gantt .bar-wrapper.med .bar {
-  fill: hsl(347, 50%, 57%);
+  fill: hsl(32, 82%, 56%);
 }
 .gantt .bar-wrapper.med .bar-progress {
-  fill: hsl(347, 100%, 77%);
+  fill: hsl(20, 100%, 77%);
 }
 .gantt .bar-wrapper.low .bar {
-  fill: hsl(298, 50%, 57%);
+  fill: hsl(47, 94%, 66%);
 }
 .gantt .bar-wrapper.low .bar-progress {
-  fill: hsl(298, 100%, 77%);
+  fill: hsl(50, 100%, 77%);
 }
 
 /* hover state */
 .gantt .bar-wrapper.high:hover .bar-progress {
-  fill: hsl(240, 100%, 77%);
+  fill: hsl(2, 100%, 77%);
 }
 .gantt .bar-wrapper.med:hover .bar-progress {
-  fill: hsl(347, 100%, 77%);
+  fill: hsl(20, 100%, 77%);
 }
 .gantt .bar-wrapper.low:hover .bar-progress {
-  fill: hsl(298, 100%, 77%);
+  fill: hsl(50, 100%, 77%);
 }
 
 /* active state */
 .gantt .bar-wrapper.high.active .bar {
-  fill: hsl(240, 50%, 57%);
+  fill: hsl(2, 50%, 57%);
 }
 .gantt .bar-wrapper.high.active .bar-progress {
-  fill: hsl(240, 100%, 77%);
+  fill: hsl(2, 100%, 77%);
 }
 .gantt .bar-wrapper.med.active .bar {
-  fill: hsl(347, 50%, 57%);
+  fill: hsl(20, 50%, 57%);
 }
 .gantt .bar-wrapper.med.active .bar-progress {
-  fill: hsl(347, 100%, 77%);
+  fill: hsl(20, 100%, 77%);
 }
 .gantt .bar-wrapper.low.active .bar {
-  fill: hsl(298, 50%, 57%);
+  fill: hsl(50, 50%, 57%);
 }
 .gantt .bar-wrapper.low.active .bar-progress {
-  fill: hsl(298, 100%, 77%);
+  fill: hsl(50, 100%, 77%);
 }
       `}
       </style>
