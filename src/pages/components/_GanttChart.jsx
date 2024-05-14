@@ -17,7 +17,7 @@ export default function GanttChart({ tasks }) {
         arrow_curve: 10, // curve of the arrow
         padding: 20,
       };
-      if (tasks) {
+      if (tasks.length) {
         let ganttChart = new Gantt('#gantt', tasks, options);
 
       }

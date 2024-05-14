@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import '/node_modules/react-datepicker/dist/react-datepicker.css';
 
 export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks, handleSubmit, handleShowNewTask }) {
   const [startDate, setStartDate] = useState(new Date());
@@ -11,16 +11,9 @@ export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks,
 
   return (
     <div className="flex">
-      <link
-        rel="stylesheet"
-        href="node_modules/react-datepicker/dist/react-datepicker.css"
-        precedence="high"
-      />
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h2 className="text-lg font-semibold">New Task</h2>
-        <form
-          onSubmit={(e) => handleSubmit(e, startDate, endDate)}
-          >
+        <form onSubmit={(e) => handleSubmit(e, startDate, endDate)}>
           <label
             htmlFor="name"
             className="block text-gray-700 text-sm font-bold mb-2">
@@ -107,10 +100,14 @@ export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks,
             ))}
           </select>
 
-          <button type="submit" className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
+          <button
+            type="submit"
+            className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
             Submit
           </button>
-          <button onClick={() => handleShowNewTask(false)} className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
+          <button
+            onClick={() => handleShowNewTask(false)}
+            className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
             Cancel
           </button>
         </form>
