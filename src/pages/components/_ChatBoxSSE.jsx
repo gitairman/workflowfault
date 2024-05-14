@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 
-export default function ChatBoxSSE() {
+export default function ChatBoxSSE( { projectId, users }) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [user, setUser] = useState(null);
 
   console.log('inside ChatBoxSSE');
 
   useEffect(() => {
     const retrieveMessages = async () => {
-      const response = await fetch('/api/messages');
+      const response = await fetch(`/api/messages/${projectId}`);
       const messages = await response.json();
       console.log(messages);
       setMessages(messages);
@@ -29,6 +30,8 @@ export default function ChatBoxSSE() {
       eventSource.cancel();
     };
 
+    setUser(localStorage.getItem('email'));
+
     return () => eventSource.close();
   }, []);
 
@@ -41,7 +44,7 @@ export default function ChatBoxSSE() {
     e.preventDefault();
     await fetch('/api/chat', {
       method: 'POST',
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({ message, user, project_id: projectId }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -58,7 +61,7 @@ export default function ChatBoxSSE() {
           <ul id="messages" className="mb-2 text-right flex flex-col items-end h-full">
             {messages.map((m) => (
               <div className="mb-2 text-right" key={m._id}>
-                <span className="mr-3">{new Date(m.created_at).toLocaleString()} - "User said:"</span>
+                <span className="mr-3">{new Date(m.created_at).toLocaleString()} - {m.user || "user"} said:</span>
                 <p className="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block">
                   {m.content}
                 </p>

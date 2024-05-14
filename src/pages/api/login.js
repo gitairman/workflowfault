@@ -2,6 +2,7 @@ import { loginUser, generateSessionToken } from "../../lib/users";
 
 
 export const POST = async ({ request, cookies }) => {
+  console.log(cookies);
   const {email, password} = await request.json();
   const user = await loginUser(email, password);
   if (!user) {

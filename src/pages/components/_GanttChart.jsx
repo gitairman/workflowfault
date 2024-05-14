@@ -1,57 +1,59 @@
 import { useEffect, useState } from 'react';
-import TasksContainer from './_TasksContainer';
-import ChatBoxSSE from './_ChatBoxSSE';
 
 export default function GanttChart({ tasks }) {
-  const [tasks, setTasks] = useState([]);
+  // const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState(true);
+  console.log(tasks);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch('/api/tasks');
-      const tasks = await response.json();
+      // const response = await fetch('/api/tasks');
+      // const tasks = await response.json();
 
-      setTasks(tasks);
+      // setTasks(tasks);
       const options = {
         bar_height: 25, // height of the task bar
         bar_corner_radius: 20, // border radius of bar
         arrow_curve: 10, // curve of the arrow
         padding: 20,
       };
-      let ganttChart = new Gantt('#gantt', tasks, options);
-    })();
-  }, [newTask]);
+      if (tasks) {
+        let ganttChart = new Gantt('#gantt', tasks, options);
 
-  const handleNewTask = async (e, sD, eD) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = formData.entries().reduce(
-      (a, [key, val]) => ({
-        ...a,
-        [key]: val,
-        ...(key === 'priority' ? { custom_class: val } : {}),
-      }),
-      {
-        progress: 50,
-        id: String(tasks.length + 1),
-        start: sD.toISOString().slice(0, 10),
-        end: eD.toISOString().slice(0, 10),
       }
-    );
-    console.log(data);
-    await fetch('/api/tasks', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
-    e.target.reset();
-    setNewTask(!newTask);
-  };
+    })();
+  }, [tasks]);
+
+  // const handleNewTask = async (e, sD, eD) => {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.target);
+  //   const data = formData.entries().reduce(
+  //     (a, [key, val]) => ({
+  //       ...a,
+  //       [key]: val,
+  //       ...(key === 'priority' ? { custom_class: val } : {}),
+  //     }),
+  //     {
+  //       progress: 50,
+  //       id: String(tasks.length + 1),
+  //       start: sD.toISOString().slice(0, 10),
+  //       end: eD.toISOString().slice(0, 10),
+  //     }
+  //   );
+  //   console.log(data);
+  //   await fetch('/api/tasks', {
+  //     method: 'POST',
+  //     body: JSON.stringify(data),
+  //   });
+  //   e.target.reset();
+  //   setNewTask(!newTask);
+  // };
 
   const styles = (
     <>
       <link
         rel="stylesheet"
-        href="node_modules/frappe-gantt/dist/frappe-gantt.css"
+        href="http://localhost:4322/node_modules/frappe-gantt/dist/frappe-gantt.css"
       />
       <style>
         {` 
@@ -122,7 +124,7 @@ export default function GanttChart({ tasks }) {
 
   return (
     <>
-      <script src="node_modules/frappe-gantt/dist/frappe-gantt.min.js" />
+      <script src="http://localhost:4322/node_modules/frappe-gantt/dist/frappe-gantt.min.js" />
       {styles}
       <svg id="gantt"></svg>
     </>

@@ -1,6 +1,6 @@
 // src/pages/api/users.js
 
-import { createUser, getAllUsers } from "../../lib/users";
+import { createUser, getAllUsers } from "../../../lib/users";
 
 export const GET = async () => {
   const users = await getAllUsers();

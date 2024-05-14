@@ -1,6 +1,6 @@
 // src/pages/api/users.js
 
-import { createTask, getAllTasks } from '../../lib/tasks';
+import { createTask, getAllTasks } from '../../../lib/tasks';
 
 export const GET = async (req) => {
   console.log(req);

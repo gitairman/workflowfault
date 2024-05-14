@@ -35,8 +35,8 @@ export default class ChatController {
     this.emitter.off('message', callback);
   }
 
-  public async addMessage(message: string): Promise<void> {
-    await createMessage({ content: message, created_at: Date.now() });
+  public async addMessage(message: string, user: string, project_id: string): Promise<void> {
+    await createMessage({ user, content: message, created_at: Date.now(), project_id});
     console.log("sent message to database");
     this.emitter.emit('message', message);
   }

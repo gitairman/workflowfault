@@ -67,3 +67,8 @@ export const generateSessionToken = (user) => {
   const token = jwt.sign(payload, secretKey);
   return token;
 }
+
+export const getUsersByProjectId = async (id) => {
+  const users = await (await Users()).find({ projects: [id] }).toArray();
+  return users;
+};

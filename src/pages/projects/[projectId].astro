@@ -4,7 +4,7 @@ import { getProjectById } from '../../lib/projects';
 import ProjectDetail from '../components/_ProjectDetail';
 const { params } = Astro;
 const projectId = params.projectId;
-
+console.log('inside project by id astro')
 
 const project = await getProjectById(projectId);
 if (!project) {
@@ -32,6 +32,6 @@ if (!project) {
       <a href={`/users/${user}`}>{user}</a>
     ))}
   </ul> -->
-  <ProjectDetail id={projectId} />
+  <ProjectDetail id={projectId} client:load/>
 </Layout>
   
