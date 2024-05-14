@@ -20,7 +20,7 @@ export default function Modal() {
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const data = {};
+    const data = { tasks: []};
     for (let field of formData) {
       const [key, value] = field;
       data[key] = value;

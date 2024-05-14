@@ -26,6 +26,11 @@ if (!project) {
   <p>Project Description: {project.description}</p>
   <p>Project Start Date: {project.start}</p>
   <p>Project End Date: {project.end}</p>
+  <ul>Project Tasks:
+    {project.tasks.map((task) => (
+      <li>Task: {task}</li>
+    ))}
+  </ul>
   <ul>Project Members:
     {project.users.map((user) => (
       <a href={`/users/${user}`}>{user}</a>
