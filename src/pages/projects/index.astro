@@ -3,6 +3,7 @@ import { getAllProjects } from '../../lib/projects';
 import Layout from '../../layouts/Layout.astro';
 import Modal from '../components/_NewProjectModal';
 import Card from '../../components/Card.astro';
+import  ProjectList  from '../components/_ProjectList';
 
 const projects = await getAllProjects();
 if (!projects) {
@@ -20,14 +21,15 @@ if (!projects) {
 	}
 </script>
 <Layout title="WorkFlowVault">
-	<h1 class="text-4xl">My Projects</h1>
+	<!-- <h1 class="text-4xl">Projects for user</h1>
 	<ul>
     {
       projects.map((project) => (
 			<Card href={`/projects/${project._id}`} title={project.title} body={`Due ${project.end}`} />
       ))
     }
-  </ul>
+  </ul> -->
+  <ProjectList client:idle/>
 	<Modal client:idle/>
 </Layout>
 
