@@ -1,9 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getProjectById } from '../../lib/projects';
+import ProjectDetail from '../components/_ProjectDetail';
 const { params } = Astro;
 const projectId = params.projectId;
-
+console.log('inside project by id astro')
 
 const project = await getProjectById(projectId);
 if (!project) {
@@ -22,7 +23,7 @@ if (!project) {
 </script>
 
 <Layout title="Project Details">
-  <h1 class="text-3xl">Project Title: {project.title}</h1>
+  <!-- <h1 class="text-3xl">Project Title: {project.title}</h1>
   <p>Project Description: {project.description}</p>
   <p>Project Start Date: {project.start}</p>
   <p>Project End Date: {project.end}</p>
@@ -35,6 +36,7 @@ if (!project) {
     {project.users.map((user) => (
       <a href={`/users/${user}`}>{user}</a>
     ))}
-  </ul>
+  </ul> -->
+  <ProjectDetail id={projectId} client:load/>
 </Layout>
   

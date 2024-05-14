@@ -1,6 +1,6 @@
 // src/pages/api/messages.js
 
-import { createMessage, getAllMessages } from '../../lib/messages';
+import { createMessage, getAllMessages } from '../../../lib/messages';
 
 export const GET = async () => {
   const messages = await getAllMessages();
