@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import TaskForm from './_TaskForm';
+import TaskList from './_TaskList';
 
 export default function GanttChart() {
   const [tasks, setTasks] = useState([]);
@@ -127,13 +128,20 @@ export default function GanttChart() {
         {styles}
         <svg id="gantt"></svg>
       </div>
-      <div className="mx-auto flex flex-col w-fit">
-      {showTaskForm && (
-        <TaskForm tasks={tasks} handleSubmit={handleSubmit} client:load />
-      )}
-      <button onClick={() => setShowTaskForm(!showTaskForm)} className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
-        {showTaskForm ? 'Cancel' : 'New Task'}
-      </button>
+      <div className="flex justify-center">
+        <div className="flex flex-col w-auto">
+          <button
+            onClick={() => setShowTaskForm(!showTaskForm)}
+            className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
+            {showTaskForm ? 'Cancel' : 'New Task'}
+          </button>
+          {showTaskForm && (
+            <TaskForm tasks={tasks} handleSubmit={handleSubmit} client:load />
+          )}
+        </div>
+        <div>
+          <TaskList tasks={tasks} />
+        </div>
       </div>
     </>
   );
