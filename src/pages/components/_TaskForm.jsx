@@ -2,7 +2,7 @@ import { useState } from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks, handleSubmit }) {
+export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks, handleSubmit, handleShowNewTask }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -107,8 +107,11 @@ export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks,
             ))}
           </select>
 
-          <button className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
+          <button type="submit" className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
             Submit
+          </button>
+          <button onClick={() => handleShowNewTask(false)} className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
+            Cancel
           </button>
         </form>
       </div>

@@ -1,5 +1,4 @@
 export default function TaskDetails({ task, handleClose }) {
-
   console.log(task);
   return (
     <>
@@ -23,17 +22,23 @@ export default function TaskDetails({ task, handleClose }) {
             <tr
               key={i}
               className="border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-white/10 dark:hover:bg-neutral-600">
-              <td className="whitespace-nowrap border-e border-neutral-200 px-6 py-4 font-medium dark:border-white/10">
+              <td className="whitespace-nowrap border-e border-neutral-200 px-6 py-4 font-medium dark:border-white/10 w-2/6">
                 {k}
               </td>
-              <td className="whitespace-nowrap border-e border-neutral-200 px-6 py-4 font-medium dark:border-white/10">
+              <td className="whitespace-nowrap border-e border-neutral-200 px-6 py-4 font-medium dark:border-white/10 flex justify-start">
                 {v}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button onClick={handleClose}>Close</button>
+      <div className="py-4">
+        <button
+          onClick={() => handleClose(null)}
+          className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-lg">
+          Close
+        </button>
+      </div>
     </>
   );
 }
