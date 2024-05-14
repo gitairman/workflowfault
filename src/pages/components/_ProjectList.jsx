@@ -44,7 +44,7 @@ const fetchProjects = async () => {
       <div className='flex justify-center max-w-full'>
         <h1 className='text-3xl'>Your Projects:</h1>
       </div>
-      <ul className='flex max-w-full'>
+      <ul className='flex max-w-full m-2'>
         {projects.map(project => (
           <div className="flex justify-center rounded bg-gray-200 space-between px-6 py-4 m-2" key={project._id}>
             <li>
