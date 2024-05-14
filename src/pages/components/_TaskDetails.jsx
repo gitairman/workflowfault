@@ -33,7 +33,11 @@ export default function TaskDetails({ task, handleClose }) {
           ))}
         </tbody>
       </table>
-      <button onClick={handleClose}>Close</button>
+      <button
+        onClick={() => handleClose(null)}
+        className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
+        Close
+      </button>
     </>
   );
 }

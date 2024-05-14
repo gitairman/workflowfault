@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import TaskForm from './_TaskForm';
-import TaskList from './_TaskList';
+import TasksContainer from './_TasksContainer';
 
 export default function GanttChart() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState(true);
-  const [showTaskForm, setShowTaskForm] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -23,7 +21,7 @@ export default function GanttChart() {
     })();
   }, [newTask]);
 
-  const handleSubmit = async (e, sD, eD) => {
+  const handleNewTask = async (e, sD, eD) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = formData.entries().reduce(
@@ -128,19 +126,9 @@ export default function GanttChart() {
         {styles}
         <svg id="gantt"></svg>
       </div>
-      <div className="flex justify-center">
-        <div className="flex flex-col w-auto">
-          <button
-            onClick={() => setShowTaskForm(!showTaskForm)}
-            className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
-            {showTaskForm ? 'Cancel' : 'New Task'}
-          </button>
-          {showTaskForm && (
-            <TaskForm tasks={tasks} handleSubmit={handleSubmit} client:load />
-          )}
-        </div>
+      <div className="flex justify-end">
         <div>
-          <TaskList tasks={tasks} />
+          <TasksContainer tasks={tasks} handleNewTask={handleNewTask}/>
         </div>
       </div>
     </>
