@@ -40,15 +40,15 @@ const fetchProjects = async () => {
     }
   }, [userEmail])
   return (
-    <div className="container">
-      <div className='flex justify-center'>
+    <div className="container mx-auto">
+      <div className='flex justify-center max-w-full'>
         <h1 className='text-3xl'>Your Projects:</h1>
       </div>
-      <ul>
+      <ul className='flex max-w-full'>
         {projects.map(project => (
-          <div className="flex rounded bg-gray-200 space-between max-w-sm">
-            <li key={project._id}>
-              <a href={`projects/${project._id}`}>{project.title}</a>
+          <div className="flex justify-center rounded bg-gray-200 space-between px-6 py-4 m-2" key={project._id}>
+            <li>
+              <a className="flex justify-center p-4"href={`projects/${project._id}`}>{project.title}</a>
               <p>Due date: {project.end}</p>
             </li>
           </div>
