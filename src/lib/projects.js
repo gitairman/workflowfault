@@ -13,7 +13,7 @@ export const getProjectById = async (projectId) => {
 }
 
 export const getProjectByUser = async(userEmail) => {
-  const projects = await (await Projects()).find({ "users.userEmail": userEmail }).toArray();
+  const projects = await (await Projects()).find({ users: userEmail }).toArray();
   return projects;
 }
 

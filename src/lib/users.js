@@ -35,6 +35,22 @@ export const loginUser = async (email, password) => {
   }
 };
 
+export const getUserEmailFromCookie = (cookies) => {
+  const token = cookies.get("session_id").value;
+  const secretKey = import.meta.env.AUTH_SECRET
+  if (!token) {
+    return null;
+  }
+  
+  try {
+    const decodedToken = jwt.verify(token, secretKey);
+    return decodedToken.user.email;
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
+  }
+};
+
 export const verifySessionToken = async (token) => {
   try {
     const secretKey = import.meta.env.AUTH_SECRET;
