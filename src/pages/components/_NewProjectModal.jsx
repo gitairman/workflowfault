@@ -53,7 +53,9 @@ export default function Modal() {
 
   return (
     <>
-    <button onClick={openModal}>Create New Project</button>
+    <div className='flex justify-center'>
+    <button onClick={openModal} className='inline-block text-sm px-4 py-3 leading-none border rounded text-yellow-500 border-yellow-500 hover:border-yellow-500 hover:text-yellow-500 hover:bg-gray-200 mt-4 lg:mt-0'>+ Create New Project</button>
+    </div>
       {isOpen && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
           <div className="relative bg-white p-6 rounded-md">
