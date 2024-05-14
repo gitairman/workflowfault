@@ -25,12 +25,12 @@ export default function TaskList({ tasks, handleSubmit, handleShowNewTask }) {
   };
   return (
     <>
-      <div className="flex flex-col">
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8 ">
-            <div className="overflow-hidden bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div className="flex flex-col h-full">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 h-full">
+          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8 h-full">
+            <div className="overflow-y-auto bg-white shadow-md rounded px-4 h-full">
               {!taskDetails ? (
-                <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white">
+                <table className="overflow-y-auto min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white h-[calc(100%-72px)]">
                   <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
                     <tr>
                       <th scope="col" className="px-6 py-4">
@@ -67,11 +67,13 @@ export default function TaskList({ tasks, handleSubmit, handleShowNewTask }) {
                 <TaskDetails task={taskDetails} handleClose={handleClose} />
               )}
               {!taskDetails && (
-                <button
-                  onClick={() => handleShowNewTask(true)}
-                  className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-xl">
-                  Create New Task
-                </button>
+                <div className="py-4">
+                  <button
+                    onClick={() => handleShowNewTask(true)}
+                    className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-lg">
+                    Create New Task
+                  </button>
+                </div>
               )}
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import TasksContainer from './_TasksContainer';
+import ChatBoxSSE from './_ChatBoxSSE';
 
 export default function GanttChart() {
   const [tasks, setTasks] = useState([]);
@@ -120,17 +121,16 @@ export default function GanttChart() {
   );
 
   return (
-    <>
-      <div>
+    <div className="h-[calc(100vh-72px)]">
+      <div className="h-[calc(50vh-72px)] overflow-y-auto">
         <script src="node_modules/frappe-gantt/dist/frappe-gantt.min.js" />
         {styles}
         <svg id="gantt"></svg>
       </div>
-      <div className="flex justify-end">
-        <div>
-          <TasksContainer tasks={tasks} handleNewTask={handleNewTask}/>
-        </div>
+      <div className="flex justify-center h-[54vh] mt-[-50px]">
+        <ChatBoxSSE />
+        <TasksContainer tasks={tasks} handleNewTask={handleNewTask} />
       </div>
-    </>
+    </div>
   );
 }

@@ -8,7 +8,7 @@ export default function TasksContainer({ tasks, handleNewTask }) {
   const [task, setTask] = useState(null);
 
   return (
-    <div>
+    <div className="w-full">
       {!showNewTask && (
         <TaskList
           tasks={tasks}

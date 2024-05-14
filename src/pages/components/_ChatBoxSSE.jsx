@@ -50,13 +50,12 @@ export default function ChatBoxSSE() {
   };
 
   return (
-    <main>
-      <div className="bg-white shadow-md rounded-lg max-w-lg w-full">
-        <div className="p-4 border-b bg-blue-500 text-white rounded-t-lg flex justify-between items-center">
+      <div className="bg-white shadow-md rounded-lg max-w-full w-full h-full">
+        <div className="p-4 border-b bg-blue-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
           <p className="text-lg font-semibold">Project Chat</p>
         </div>
-        <div id="chatbox" className="p-4 h-80 overflow-y-auto">
-          <ul id="messages" className="mb-2 text-right flex flex-col items-end">
+        <div id="chatbox" className="p-4 overflow-y-auto h-[calc(100%-130px)]">
+          <ul id="messages" className="mb-2 text-right flex flex-col items-end h-full">
             {messages.map((m) => (
               <div className="mb-2 text-right" key={m._id}>
                 <span className="mr-3">{new Date(m.created_at).toLocaleString()} - "User said:"</span>
@@ -67,7 +66,7 @@ export default function ChatBoxSSE() {
             ))}
           </ul>
         </div>
-        <form onSubmit={handleSubmit} id="chat" className="p-4 border-t flex">
+        <form onSubmit={handleSubmit} id="chat" className="p-4 border-t flex h-[80px]">
           <input
             onChange={({ target }) => setMessage(target.value)}
             id="message"
@@ -82,7 +81,6 @@ export default function ChatBoxSSE() {
           </button>
         </form>
       </div>
-    </main>
   );
 }
 
