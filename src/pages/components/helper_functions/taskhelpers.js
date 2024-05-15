@@ -33,6 +33,7 @@ export const updateTask = async (id, data) => {
 }
 
 export const deleteTask = async (id) => {
+  console.log('inside deleteTask', id);
       await fetch(`/api/tasks/${id}`, {
         method: 'DELETE',
       });

@@ -6,9 +6,9 @@ import { deleteTaskById, getTasksByProjectId, updateTaskById } from "../../../..
 export const GET = async (req) => {
   console.log('inside get tasks by project id api', req.params)
   const id = req.params.projectId;
-  console.log(id);
+  // console.log(id);
   const tasks = await getTasksByProjectId(id);
-  console.log(tasks);
+  // console.log(tasks);
   if (!tasks) {
     return new Response(null, {
       status: 404,
@@ -37,7 +37,7 @@ export const PATCH = async ({request}) => {
 }
 export const DELETE = async (req) => {
   console.log('inside Delete task', req.params);
-  const res = await deleteTaskById(req.params.id);
+  const res = await deleteTaskById(req.params.projectId);
     if (res.deletedCount === 0) {
       return new Response(null, {
         status: 404,
@@ -45,7 +45,7 @@ export const DELETE = async (req) => {
       });
     }
 
-    return new Response(JSON.stringify(tasks), {
+    return new Response(JSON.stringify(res), {
       status: 200,
     });
 }
