@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import TaskForm from './_TaskForm';
 import TaskList from './_TaskList';
-import TaskDetails from './_TaskDetails';
 
-export default function TasksContainer({ tasks, handleNewTask }) {
+export default function TasksContainer({ users, tasks, handleNewTask }) {
   const [showNewTask, setShowNewTask] = useState(false);
   const [task, setTask] = useState(null);
 
@@ -18,6 +17,7 @@ export default function TasksContainer({ tasks, handleNewTask }) {
       )}
       {showNewTask && (
         <TaskForm
+          users={users}
           tasks={tasks}
           handleShowNewTask={setShowNewTask}
           handleSubmit={handleNewTask}
