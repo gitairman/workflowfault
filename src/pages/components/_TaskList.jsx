@@ -70,7 +70,7 @@ export default function TaskList({ tasks, handleSubmit, handleShowNewTask }) {
                 <div className="py-4">
                   <button
                     onClick={() => handleShowNewTask(true)}
-                    className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-lg">
+                    className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">
                     Create New Task
                   </button>
                 </div>

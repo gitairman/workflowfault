@@ -11,7 +11,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
   return (
     <div className="flex h-full">
       <div className="bg-white shadow-md rounded-lg max-w-full w-full h-full">
-        <div className="p-4 border-b bg-blue-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
+        <div className="p-4 border-b bg-yellow-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
           <p className="text-lg font-semibold">New Task</p>
         </div>
         <form
@@ -38,7 +38,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
 
-          <label htmlFor="start">Start Date:</label>
+          <label htmlFor="start_date">Start Date:</label>
 
           <div className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             {' '}
@@ -46,16 +46,20 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
               selected={startDate}
               onChange={(date) => setStartDate(date)}
               dateFormat="yyyy/MM/dd"
+              name="start_date"
+              id="start_date"
             />
           </div>
 
-          <label htmlFor="end">End Date:</label>
+          <label htmlFor="end_date">End Date:</label>
 
           <div className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             <DatePicker
               selected={endDate}
               onChange={(date) => setEndDate(date)}
               dateFormat="yyyy/MM/dd"
+              name="end_date"
+              id="end_date"
             />
           </div>
 
@@ -117,12 +121,12 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
 
           <button
             type="submit"
-            className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-lg my-6 mr-6">
+            className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300 my-5 mr-5">
             Submit
           </button>
           <button
             onClick={() => handleShowNewTask(false)}
-            className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-lg">
+            className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">
             Cancel
           </button>
         </form>

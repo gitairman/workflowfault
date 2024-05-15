@@ -35,7 +35,7 @@ export default function TaskDetails({ task, handleClose }) {
       <div className="py-4">
         <button
           onClick={() => handleClose(null)}
-          className="mx-auto bg-blue-400 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 w-40 h-10 rounded-lg">
+          className="mx-auto bg-yellow-400 hover:bg-yellow-600 active:bg-yellow-700 focus:outline-none focus:ring focus:ring-yellow-300 w-40 h-10 rounded-lg">
           Close
         </button>
       </div>
