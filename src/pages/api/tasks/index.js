@@ -3,7 +3,7 @@
 import { createTask, getAllTasks } from '../../../lib/tasks';
 
 export const GET = async (req) => {
-  console.log(req);
+  // console.log(req);
   const tasks = await getAllTasks();
   if (!tasks) {
     return new Response(null, {
