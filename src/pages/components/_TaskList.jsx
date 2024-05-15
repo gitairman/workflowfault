@@ -26,8 +26,8 @@ export default function TaskList({ tasks, handleSubmit, handleShowNewTask }) {
   return (
     <>
       <div className="flex flex-col h-full">
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 h-full">
-          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8 h-full">
+        <div className="overflow-x-auto h-full">
+          <div className="inline-block min-w-full h-full">
             <div className="overflow-y-auto bg-white shadow-md rounded px-4 h-full flex flex-col justify-between">
               {!taskDetails ? (
                 <table className="overflow-y-auto min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white">
