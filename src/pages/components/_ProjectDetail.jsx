@@ -6,7 +6,6 @@ import TasksContainer from './_TasksContainer';
 export default function ProjectDetail({ id }) {
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
-  const [messages, setMessages] = useState([]);
 
   console.log('inside project detail', id);
 
@@ -16,12 +15,9 @@ export default function ProjectDetail({ id }) {
       console.log(tasks);
       const users = await getData('users');
       console.log(users);
-      // const messages = await getData('messages');
-      // console.log(messages);
 
       setTasks(tasks);
-      // setUsers(users);
-      // setMessages(messages);
+      setUsers(users);
     })();
   }, []);
 
@@ -39,8 +35,8 @@ export default function ProjectDetail({ id }) {
         <GanttChart tasks={tasks} />
       </div>
       <div className="flex justify-center h-[54vh] mt-[-50px]">
-        <ChatBoxSSE users={users} projectId={id} />
-        <TasksContainer tasks={tasks} users={users} />
+        <ChatBoxSSE projectId={id} />
+        <TasksContainer users={users} tasks={tasks} />
       </div>
     </div>
   );

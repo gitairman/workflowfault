@@ -2,7 +2,7 @@ import { useState } from "react";
 import DatePicker from 'react-datepicker';
 import '/node_modules/react-datepicker/dist/react-datepicker.css';
 
-export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks, handleSubmit, handleShowNewTask }) {
+export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -94,8 +94,8 @@ export default function TaskForm({ users=["Aaron", "Sophie", "Amrinder"], tasks,
             className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
             <option value="default">-----Select One-----</option>
             {users.map((u, i) => (
-              <option key={i} value={u}>
-                {u}
+              <option key={i} value={u.name}>
+                {u.name}
               </option>
             ))}
           </select>
