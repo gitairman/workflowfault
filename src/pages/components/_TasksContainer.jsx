@@ -2,7 +2,7 @@ import { useState } from 'react';
 import TaskForm from './_TaskForm';
 import TaskList from './_TaskList';
 
-export default function TasksContainer({ users, tasks, handleNewTask }) {
+export default function TasksContainer({ users, tasks, handleNewTask, handleTaskComplete, handleDeleteTask }) {
   const [showNewTask, setShowNewTask] = useState(false);
   const [task, setTask] = useState(null);
 
@@ -13,6 +13,8 @@ export default function TasksContainer({ users, tasks, handleNewTask }) {
           tasks={tasks}
           handleShowNewTask={setShowNewTask}
           handleShowDetails={setTask}
+          handleTaskComplete={handleTaskComplete}
+          handleDeleteTask={handleDeleteTask}
         />
       )}
       {showNewTask && (

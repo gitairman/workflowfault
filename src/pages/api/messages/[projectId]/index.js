@@ -4,7 +4,7 @@ import { getMessagesByProjectId } from '../../../../lib/messages';
 
 export const GET = async (req) => {
   const id = req.params.projectId;
-  console.log(id);
+  console.log('inside getMessages', id);
   const messages = await getMessagesByProjectId(id);
   if (!messages) {
     return new Response(null, {

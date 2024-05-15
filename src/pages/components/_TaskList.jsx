@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import TaskDetails from './_TaskDetails';
 
-export default function TaskList({ tasks, handleSubmit, handleShowNewTask }) {
+export default function TaskList({ tasks, handleShowNewTask, handleDeleteTask, handleTaskComplete }) {
   const [taskDetails, setTaskDetails] = useState(null);
 
   const handleClick = (task) => {
     const filtered = {
+      id: task.id,
       Name: task.name,
       Description: task.description,
       'Start Date': task.start,
@@ -64,7 +65,7 @@ export default function TaskList({ tasks, handleSubmit, handleShowNewTask }) {
                   </tbody>
                 </table>
               ) : (
-                <TaskDetails task={taskDetails} handleClose={handleClose} />
+                <TaskDetails task={taskDetails} onCloseTask={handleClose} onDeleteTask={handleDeleteTask} onTaskComplete={handleTaskComplete}/>
               )}
               {!taskDetails && (
                 <div className="py-4">

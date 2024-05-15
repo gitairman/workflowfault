@@ -3,47 +3,40 @@ import ChatBoxSSE from './_ChatBoxSSE';
 import GanttChart from './_GanttChart';
 import TasksContainer from './_TasksContainer';
 
+import { getAndSet } from './helper_functions/commonhelpers';
+import {
+  addTask,
+  deleteTask,
+  updateTask,
+} from './helper_functions/taskhelpers';
+
 export default function ProjectDetail({ id }) {
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     (async () => {
-    await getAndSet('tasks', setTasks);
-    await getAndSet('users', setUsers);
+      await getAndSet(id, 'tasks', setTasks);
+      await getAndSet(id, 'users', setUsers);
     })();
   }, []);
 
-  const getAndSet = async (dataType, cb) => {
-    const response = await fetch(`/api/${dataType}/${id}`);
-    const data = await response.json();
-    cb(data);
+  const handleNewTask = async (e, startDate, endDate) => {
+    await addTask(e, startDate, endDate, id);
+    await getAndSet(id, 'tasks', setTasks);
   };
 
-    const handleNewTask = async (e, sD, eD) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const data = formData.entries().reduce(
-        (a, [key, val]) => ({
-          ...a,
-          [key]: val,
-          ...(key === 'priority' ? { custom_class: val } : {}),
-        }),
-        {
-          progress: 50,
-          id: Date.now().toString(),
-          start: sD.toISOString().slice(0, 10),
-          end: eD.toISOString().slice(0, 10),
-          project_id: id
-        }
-      );
-      await fetch('/api/tasks', {
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
-      e.target.reset();
-      getAndSet('tasks', setTasks);
-    };
+  const handleDeleteTask = async (taskId) => {
+    console.log(taskId);
+    await deleteTask(taskId);
+    await getAndSet(id, 'tasks', setTasks);
+  };
+
+  const handleTaskComplete = async (taskId, data) => {
+    console.log('inside handleTaskComplete', taskId, data)
+    await updateTask(taskId, data);
+    await getAndSet(id, 'tasks', setTasks);
+  };
 
   return (
     <div className="h-[calc(100vh-72px)]">
@@ -52,7 +45,13 @@ export default function ProjectDetail({ id }) {
       </div>
       <div className="flex justify-center h-[54vh] mt-[-50px]">
         <ChatBoxSSE projectId={id} />
-        <TasksContainer users={users} tasks={tasks} handleNewTask={handleNewTask}/>
+        <TasksContainer
+          users={users}
+          tasks={tasks}
+          handleNewTask={handleNewTask}
+          handleDeleteTask={handleDeleteTask}
+          handleTaskComplete={handleTaskComplete}
+        />
       </div>
     </div>
   );
