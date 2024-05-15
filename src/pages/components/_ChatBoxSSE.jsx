@@ -50,7 +50,7 @@ export default function ChatBoxSSE( { projectId }) {
 
   return (
       <div className="bg-white shadow-md rounded-lg max-w-full w-full h-full">
-        <div className="p-4 border-b bg-blue-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
+        <div className="p-4 border-b bg-yellow-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
           <p className="text-lg font-semibold">Project Chat</p>
         </div>
         <div id="chatbox" className="p-4 overflow-y-auto h-[calc(100%-130px)]">
@@ -58,7 +58,7 @@ export default function ChatBoxSSE( { projectId }) {
             {messages.map((m) => (
               <div className="mb-2 text-right" key={m._id}>
                 <span className="mr-3">{new Date(m.created_at).toLocaleString()} - {m.user || "user"} said:</span>
-                <p className="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block">
+                <p className="bg-gray-400 text-white rounded-lg py-2 px-4 inline-block">
                   {m.content}
                 </p>
               </div>
@@ -71,11 +71,11 @@ export default function ChatBoxSSE( { projectId }) {
             id="message"
             type="text"
             value={message}
-            className="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300">
+            className="bg-yellow-500 text-white px-4 py-2 rounded-r-md hover:bg-yellow-600 transition duration-300">
             Send
           </button>
         </form>

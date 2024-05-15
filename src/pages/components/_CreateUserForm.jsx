@@ -2,7 +2,7 @@ export default function CreateUserForm() {
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const data = {};
+    const data = { projects: [] };
     for (let field of formData) {
       const [key, value] = field;
       data[key] = value;

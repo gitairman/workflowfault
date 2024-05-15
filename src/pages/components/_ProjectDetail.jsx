@@ -31,7 +31,7 @@ export default function ProjectDetail({ id }) {
         }),
         {
           progress: 50,
-          id: String(tasks.length + 1),
+          id: Date.now().toString(),
           start: sD.toISOString().slice(0, 10),
           end: eD.toISOString().slice(0, 10),
           project_id: id
