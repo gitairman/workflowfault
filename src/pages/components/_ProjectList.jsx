@@ -64,7 +64,7 @@ const fetchProjects = async () => {
       </div>
       <ul className='flex max-w-full m-2'>
         {projects.map(project => (
-          <div className="flex justify-center rounded bg-gray-200 space-between px-6 py-4 m-2" key={project._id}>
+          <div className="flex justify-center rounded bg-gray-500 space-between px-6 py-4 m-2" key={project._id}>
             <li>
               <a className="flex justify-center p-4"href={`projects/${project._id}`}>{project.title}</a>
               <p>Due date: {project.end}
