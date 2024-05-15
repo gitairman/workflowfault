@@ -18,12 +18,22 @@ if (!users) {
 </script>
 
 <Layout title="Users">
-  <h1>Users</h1>
-  <ul>
+  <h1 class="text-3xl p-1">User Directory</h1>
+  <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700 p-2">
     {
       users.map((user) => (
-        <li>
-          {user.name}, {user.email}, {user.company}
+        <li class="pb-3 sm:pb-4">
+          <div class="flex items-center space-x-4 rtl:space-x-reverse">
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                {user.name}
+              </p>
+              <p class="text-sm text-gray-500">{user.company}</p>
+            </div>
+            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+              <a href={`/users/${user.email}`}>View Details</a>
+            </div>
+          </div>
         </li>
       ))
     }
