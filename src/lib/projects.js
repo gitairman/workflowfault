@@ -21,3 +21,8 @@ export const createProject = async (newProject) => {
   const project = await (await Projects()).insertOne(newProject);
   return project;
 };
+
+export const deleteProject = async (projectId) => {
+  var id = new ObjectId(projectId);
+  await (await Projects()).deleteOne({ _id: id})
+}
