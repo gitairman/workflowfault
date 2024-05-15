@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getProjectById } from '../../lib/projects';
+import { getUserByEmail } from '../../lib/users';
 import ProjectDetail from '../components/_ProjectDetail';
 const { params } = Astro;
 const projectId = params.projectId;
@@ -23,6 +24,49 @@ if (!project) {
 </script>
 
 <Layout title="Project Details">
+  <div class="bg-gray-900 overflow-hidden shadow rounded-lg border">
+    <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-white">
+            Project information:
+        </h3>
+    </div>
+    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+        <dl class="sm:divide-y sm:divide-gray-200">
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-white">
+                    Project name
+                </dt>
+                <dd class="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
+                    {project.title}
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-white">
+                    Start Date
+                </dt>
+                <dd class="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
+                    {project.start}
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-white">
+                    End date
+                </dt>
+                <dd class="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
+                    {project.end}
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-white">
+                    Members:
+                </dt>
+                <dd class="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
+                    {project.users.map((user) => <a href={`/users/${user}`}>{user} </a>)}
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>
   <ProjectDetail id={projectId} client:load/>
 </Layout>
   
