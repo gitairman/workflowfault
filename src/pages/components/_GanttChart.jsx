@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react';
 
 export default function GanttChart({ tasks }) {
-  // const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState(true);
   console.log(tasks);
 
   useEffect(() => {
     (async () => {
-      // const response = await fetch('/api/tasks');
-      // const tasks = await response.json();
-
-      // setTasks(tasks);
       const options = {
         bar_height: 25, // height of the task bar
         bar_corner_radius: 20, // border radius of bar
@@ -19,35 +13,9 @@ export default function GanttChart({ tasks }) {
       };
       if (tasks.length) {
         let ganttChart = new Gantt('#gantt', tasks, options);
-
       }
     })();
   }, [tasks]);
-
-  // const handleNewTask = async (e, sD, eD) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const data = formData.entries().reduce(
-  //     (a, [key, val]) => ({
-  //       ...a,
-  //       [key]: val,
-  //       ...(key === 'priority' ? { custom_class: val } : {}),
-  //     }),
-  //     {
-  //       progress: 50,
-  //       id: String(tasks.length + 1),
-  //       start: sD.toISOString().slice(0, 10),
-  //       end: eD.toISOString().slice(0, 10),
-  //     }
-  //   );
-  //   console.log(data);
-  //   await fetch('/api/tasks', {
-  //     method: 'POST',
-  //     body: JSON.stringify(data),
-  //   });
-  //   e.target.reset();
-  //   setNewTask(!newTask);
-  // };
 
   const styles = (
     <>

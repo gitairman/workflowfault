@@ -6,7 +6,6 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  // console.log(`${startDate.getFullYear()}-${String(startDate.getMonth()).padStart(2, '0')}-${String(startDate.getDay()).padStart(2, '0')}`);
   console.log(startDate.toISOString().slice(0, 10))
 
   return (
@@ -115,11 +114,3 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
     </div>
   );
 }
-
-  // {
-  //   id: 'Task 1',
-  //   name: 'Buy hosting',
-  //   start: '2022-01-22',
-  //   end: '2022-01-23',
-  //   progress: 100,
-  // },
