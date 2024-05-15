@@ -27,7 +27,7 @@ export default function Nav() {
   return(
     <nav className="flex items-center justify-between flex-wrap bg-yellow-500 px-6 py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <a href="/" className="text-[150%]" >WorkFlowVault</a>
+        <a href="/" ><img className="w-44 h-10"src="src\images\WorkFlowVault_transparent.png" alt="workflow logo"/></a>
       </div>
       <div className="block lg:hidden">
         <button onClick={toggleMenu} className="flex items-center px-3 py-2 border rounded text-yellow-200 border-yellow-400 hover:text-white hover:border-white">
