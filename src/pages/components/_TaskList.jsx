@@ -29,7 +29,7 @@ export default function TaskList({ tasks, handleShowNewTask, handleDeleteTask, h
       <div className="flex flex-col h-full">
         <div className="overflow-x-auto h-full">
           <div className="inline-block min-w-full h-full">
-            <div className="overflow-y-auto bg-white shadow-md rounded px-4 h-full flex flex-col justify-between">
+            <div className="overflow-y-auto bg-gray-900 shadow-md rounded px-4 h-full flex flex-col justify-between">
               {!taskDetails ? (
                 <table className="overflow-y-auto min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white">
                   <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
