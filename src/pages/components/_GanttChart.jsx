@@ -21,7 +21,7 @@ export default function GanttChart({ tasks }) {
     <>
       <link
         rel="stylesheet"
-        href="http://localhost:4322/node_modules/frappe-gantt/dist/frappe-gantt.css"
+        href="/node_modules/frappe-gantt/dist/frappe-gantt.css"
       />
       <style>
         {` 
@@ -92,7 +92,7 @@ export default function GanttChart({ tasks }) {
 
   return (
     <>
-      <script src="http://localhost:4322/node_modules/frappe-gantt/dist/frappe-gantt.min.js" />
+      <script src="/node_modules/frappe-gantt/dist/frappe-gantt.min.js" />
       {styles}
       <svg id="gantt"></svg>
     </>
