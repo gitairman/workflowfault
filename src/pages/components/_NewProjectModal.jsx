@@ -59,9 +59,6 @@ export default function Modal() {
       {isOpen && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
           <div className="relative bg-white p-6 rounded-md">
-            <span className="close cursor-pointer" onClick={closeModal}>
-              &times;
-            </span>
             <div className="w-full max-w-s">
               <form onSubmit={submitHandler}>
                 <div className="mb-4">
@@ -87,7 +84,8 @@ export default function Modal() {
                   </select>
                 </div>
                 <div className="flex justify-center">
-                  <button type="submit" className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+                  <button type="submit" className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 m-1 rounded focus:outline-none focus:shadow-outline">Submit</button>
+                  <button type="button" className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 m-1 rounded focus:outline-none focus:shadow-outline" onClick={closeModal}>Cancel</button>
                 </div>
             </form>
             </div>
