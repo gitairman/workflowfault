@@ -32,6 +32,7 @@ export const createProject = async (newProject) => {
 };
 
 export const deleteProject = async (projectId) => {
-  var id = new ObjectId(projectId);
+  const id = new ObjectId(projectId);
   await (await Projects()).deleteOne({ _id: id });
+  await (await Users()).updateMany({projects: {$in:[projectId]}}, {$pull: { projects: projectId }});
 };
