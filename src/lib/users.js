@@ -1,5 +1,5 @@
 // /src/lib/users.js
-import { Users } from "./mongodb";
+import { Users } from './mongodb';
 import { ObjectId } from 'mongodb';
 import jwt from 'jsonwebtoken';
 
@@ -9,9 +9,9 @@ export const getAllUsers = async () => {
 };
 
 export const getUserByEmail = async (userEmail) => {
-  const user = await (await Users()).findOne({ email: userEmail})
-  return user
-}
+  const user = await (await Users()).findOne({ email: userEmail });
+  return user;
+};
 
 export const createUser = async (newUser) => {
   const user = await (await Users()).insertOne(newUser);
@@ -36,17 +36,17 @@ export const loginUser = async (email, password) => {
 };
 
 export const getUserEmailFromCookie = (cookies) => {
-  const token = cookies.get("session_id").value;
-  const secretKey = import.meta.env.AUTH_SECRET
+  const token = cookies.get('session_id').value;
+  const secretKey = import.meta.env.AUTH_SECRET;
   if (!token) {
     return null;
   }
-  
+
   try {
     const decodedToken = jwt.verify(token, secretKey);
     return decodedToken.user.email;
   } catch (error) {
-    console.error("Error decoding token:", error);
+    console.error('Error decoding token:', error);
     return null;
   }
 };
@@ -59,16 +59,20 @@ export const verifySessionToken = async (token) => {
   } catch (error) {
     throw new Error('Session token verification failed');
   }
-}
+};
 
 export const generateSessionToken = (user) => {
   const payload = { user };
   const secretKey = import.meta.env.AUTH_SECRET;
   const token = jwt.sign(payload, secretKey);
   return token;
-}
+};
 
 export const getUsersByProjectId = async (id) => {
-  const users = await (await Users()).find({ projects: [id] }).toArray();
+  console.log('inside getUsersByProjectId', id);
+  const users = await (await Users())
+    .find({ projects: { $in: [id] } })
+    .toArray();
+  console.log('inside getUsersByProjectId', users);
   return users;
 };

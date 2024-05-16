@@ -8,7 +8,7 @@ export const GET = async (req) => {
   const id = req.params.projectId;
   // console.log(id);
   const tasks = await getTasksByProjectId(id);
-  // console.log(tasks);
+  console.log(tasks);
   if (!tasks) {
     return new Response(null, {
       status: 404,

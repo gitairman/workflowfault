@@ -17,6 +17,7 @@ export const addTask = async (e, sD, eD, project_id) => {
       project_id,
     }
   );
+  console.log(data);
   await fetch('/api/tasks', {
     method: 'POST',
     body: JSON.stringify(data),

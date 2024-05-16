@@ -19,9 +19,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
         <div className="p-4 border-b bg-yellow-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
           <p className="text-lg font-semibold">New Task</p>
         </div>
-        <form
-          onSubmit={onSubmit}
-          className="px-4">
+        <form onSubmit={onSubmit} className="px-4">
           <label
             htmlFor="name"
             className="block text-gray-700 text-sm font-bold mb-2">
@@ -43,7 +41,9 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
 
-          <label htmlFor="start_date">Start Date:</label>
+          <label htmlFor="start_date" className="text-gray-700">
+            Start Date:
+          </label>
 
           <div className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             {' '}
@@ -56,7 +56,9 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             />
           </div>
 
-          <label htmlFor="end_date">End Date:</label>
+          <label htmlFor="end_date" className="text-gray-700">
+            End Date:
+          </label>
 
           <div className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             <DatePicker
@@ -68,7 +70,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             />
           </div>
 
-          <fieldset className="py-3">
+          <fieldset className="py-3 text-gray-700">
             <div>
               Priority:{' '}
               <input
@@ -89,7 +91,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
                 value="med"
                 defaultChecked
               />
-              <label htmlFor="priority2" className="mr-2">
+              <label htmlFor="priority2" className="mr-2 text-gray-700">
                 {' '}
                 Medium{' '}
               </label>
@@ -98,7 +100,9 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             </div>
           </fieldset>
 
-          <label htmlFor="dependencies">Dependencies:</label>
+          <label htmlFor="dependencies" className="text-gray-700">
+            Dependencies:
+          </label>
           <select
             name="dependencies"
             id="dependencies"
@@ -111,7 +115,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             ))}
           </select>
 
-          <label htmlFor="assigned_to">Assigned To: </label>
+          <label htmlFor="assigned_to" className="text-gray-700">Assigned To: </label>
           <select
             name="assigned_to"
             id="assigned_to"
