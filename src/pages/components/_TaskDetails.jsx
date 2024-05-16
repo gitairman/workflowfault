@@ -19,7 +19,7 @@ export default function TaskDetails({
 
   return (
     <>
-      <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white">
+      <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white mt-6">
         <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
           <tr>
             <th

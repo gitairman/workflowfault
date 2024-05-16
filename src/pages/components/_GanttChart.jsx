@@ -33,9 +33,19 @@ export default function GanttChart({ tasks }) {
     }
     svg {
       margin-bottom: -100px;
+      // height: 418px;
+      overflow-y: auto;
     }
     .gantt-container {
-      z-index: -10;
+      height: 418px;
+      overflow-y: auto;
+    }
+    .gantt-container > * {
+      overflow-y: auto;
+    }
+    .grid {
+      height: 418px;
+      overflow-y: auto;
     }
     /** bar and bar progress of the different color */
 /* initial state */
