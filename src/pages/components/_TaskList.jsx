@@ -50,7 +50,7 @@ export default function TaskList({ tasks, handleShowNewTask, handleDeleteTask, h
                       <tr
                         onClick={() => handleClick(t)}
                         key={t.id}
-                        className="border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-white/10 dark:hover:bg-neutral-600">
+                        className="border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-white/10 dark:hover:bg-neutral-600 cursor-pointer">
                         <td className="whitespace-nowrap border-e border-neutral-200 px-6 py-4 font-medium dark:border-white/10">
                           {t.name}
                         </td>
