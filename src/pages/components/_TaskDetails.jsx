@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function TaskDetails({
   task,
@@ -6,13 +6,17 @@ export default function TaskDetails({
   onTaskComplete,
   onDeleteTask,
 }) {
-  const [progress, setProgress] = useState(task.progress);
+  const [updatedTask, setUpdatedTask] = useState(task);
 
   const handleClickCompleted = async () => {
     await onTaskComplete(task.id, { progress: 100 });
-    console.log('inside handleClickCompleted');
-    setProgress(100);
+    setUpdatedTask({...task, Progress: '100%' })
   };
+  const handleDeleteClick = async () => {
+    await onDeleteTask(task.id);
+    onCloseTask(null);
+  }
+
   return (
     <>
       <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white">
@@ -31,7 +35,7 @@ export default function TaskDetails({
           </tr>
         </thead>
         <tbody>
-          {Object.entries(task).map(([k, v], i) =>
+          {Object.entries(updatedTask).map(([k, v], i) =>
             k === 'id' ? null : (
               <tr
                 key={i}
@@ -59,7 +63,7 @@ export default function TaskDetails({
           Mark Complete
         </button>
         <button
-          onClick={() => onDeleteTask(task.id)}
+          onClick={handleDeleteClick}
           className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300 w-28">
           Delete
         </button>

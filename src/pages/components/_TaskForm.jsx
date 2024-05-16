@@ -8,6 +8,11 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
 
   console.log(startDate.toISOString().slice(0, 10))
 
+  const onSubmit = (e) => {
+    handleSubmit(e, startDate, endDate);
+    handleShowNewTask(false);
+  }
+
   return (
     <div className="flex h-full">
       <div className="bg-white shadow-md rounded-lg max-w-full w-full h-full">
@@ -15,7 +20,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
           <p className="text-lg font-semibold">New Task</p>
         </div>
         <form
-          onSubmit={(e) => handleSubmit(e, startDate, endDate)}
+          onSubmit={onSubmit}
           className="px-4">
           <label
             htmlFor="name"
