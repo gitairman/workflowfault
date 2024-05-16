@@ -34,6 +34,9 @@ export default function GanttChart({ tasks }) {
     svg {
       margin-bottom: -100px;
     }
+    .gantt-container {
+      z-index: -10;
+    }
     /** bar and bar progress of the different color */
 /* initial state */
 .gantt .bar-wrapper.high .bar {
@@ -94,7 +97,7 @@ export default function GanttChart({ tasks }) {
     <>
       <script src="/node_modules/frappe-gantt/dist/frappe-gantt.min.js" />
       {styles}
-      <svg id="gantt"></svg>
+      <svg id="gantt" ></svg>
     </>
   );
 }

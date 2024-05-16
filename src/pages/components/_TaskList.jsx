@@ -29,43 +29,60 @@ export default function TaskList({ tasks, handleShowNewTask, handleDeleteTask, h
       <div className="flex flex-col h-full">
         <div className="overflow-x-auto h-full">
           <div className="inline-block min-w-full h-full">
-            <div className="overflow-y-auto bg-gray-900 shadow-md rounded px-4 h-full flex flex-col justify-between">
+            <div className="bg-gray-900 shadow-md rounded px-4 h-full flex flex-col justify-between">
               {!taskDetails ? (
-                <table className="overflow-y-auto min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white">
-                  <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
-                    <tr>
-                      <th scope="col" className="px-6 py-4">
-                        Task Name
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Start Date
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Due Date
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {tasks.map((t) => (
-                      <tr
-                        onClick={() => handleClick(t)}
-                        key={t.id}
-                        className="border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-white/10 dark:hover:bg-neutral-600 cursor-pointer">
-                        <td className="whitespace-nowrap border-e border-neutral-200 px-6 py-4 font-medium dark:border-white/10">
-                          {t.name}
-                        </td>
-                        <td className="whitespace-nowrap border-e border-neutral-200 px-6 py-4 font-medium dark:border-white/10">
-                          {t.start}
-                        </td>
-                        <td className="whitespace-nowrap border-e border-neutral-200 px-6 py-4 font-medium dark:border-white/10">
-                          {t.end}
-                        </td>
+                <>
+                  <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white mt-4">
+                    <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
+                      <tr>
+                        <th
+                          scope="col"
+                          className="w-2/6 py-4 whitespace-nowrap border-e border-neutral-200 dark:border-white/10">
+                          Task Name
+                        </th>
+                        <th
+                          scope="col"
+                          className="w-2/6 py-4 whitespace-nowrap border-e border-neutral-200 dark:border-white/10">
+                          Start Date
+                        </th>
+                        <th
+                          scope="col"
+                          className="w-2/6 py-4 whitespace-nowrap border-e border-neutral-200 dark:border-white/10">
+                          Due Date
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                  </table>
+                  <div className="overflow-y-auto">
+                  <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white mt-2">
+                    <tbody>
+                      {tasks.map((t) => (
+                        <tr
+                          onClick={() => handleClick(t)}
+                          key={t.id}
+                          className="border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-white/10 dark:hover:bg-neutral-600 cursor-pointer">
+                          <td className="w-2/6 whitespace-nowrap border-e border-neutral-200 py-4 font-medium dark:border-white/10">
+                            {t.name}
+                          </td>
+                          <td className="w-2/6 whitespace-nowrap border-e border-neutral-200 py-4 font-medium dark:border-white/10">
+                            {t.start}
+                          </td>
+                          <td className="w-2/6 whitespace-nowrap border-e border-neutral-200 py-4 font-medium dark:border-white/10">
+                            {t.end}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  </div>
+                </>
               ) : (
-                <TaskDetails task={taskDetails} onCloseTask={handleClose} onDeleteTask={handleDeleteTask} onTaskComplete={handleTaskComplete}/>
+                <TaskDetails
+                  task={taskDetails}
+                  onCloseTask={handleClose}
+                  onDeleteTask={handleDeleteTask}
+                  onTaskComplete={handleTaskComplete}
+                />
               )}
               {!taskDetails && (
                 <div className="py-4">
