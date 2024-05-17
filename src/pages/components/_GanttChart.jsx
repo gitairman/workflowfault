@@ -37,7 +37,7 @@ export default function GanttChart({ tasks }) {
       overflow-y: auto;
     }
     .gantt-container {
-      height: 418px;
+      height: 290px;
       overflow-y: auto;
     }
     .gantt-container > * {
