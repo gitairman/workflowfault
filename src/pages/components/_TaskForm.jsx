@@ -15,11 +15,11 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
 
   return (
     <div className="flex h-full">
-      <div className="bg-white shadow-md rounded-lg max-w-full w-full h-full">
+      <div className="bg-white shadow-md rounded-lg max-w-full w-full h-full overflow-y-auto">
         <div className="p-4 border-b bg-yellow-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
           <p className="text-lg font-semibold">New Task</p>
         </div>
-        <form onSubmit={onSubmit} className="px-4">
+        <form onSubmit={onSubmit} className="px-4 overflow-y-auto max-h-[calc(100vh-50px)]">
           <label
             htmlFor="name"
             className="block text-gray-700 text-sm font-bold mb-2">
