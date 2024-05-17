@@ -55,8 +55,6 @@ export default function ChatBoxSSE( { projectId }) {
 
   return (
       <div className="bg-gray-900 shadow-md rounded-lg max-w-full w-full h-full">
-        <div className="hidden bg-blue-500"></div>
-        <div className="hidden bg-gray-500"></div>
         <div className="p-4 border-b bg-yellow-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
           <p className="text-lg font-semibold">Project Chat</p>
           <form className="max-w-sm mx-0">
