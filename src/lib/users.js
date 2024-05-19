@@ -76,3 +76,14 @@ export const getUsersByProjectId = async (id) => {
   console.log('inside getUsersByProjectId', users);
   return users;
 };
+
+export const getAllUsersByCompany = async (email) => {
+  const user = await (await Users()).findOne({ email });
+  if (!user) {
+    throw new Error('User not found.');
+  }
+  const company = user.company;
+  const users = await (await Users()).find({ company }).toArray();
+  return users;
+}
+
