@@ -12,6 +12,14 @@ export default function GanttChart({ tasks }) {
         padding: 20,
       };
       if (tasks.length) {
+        const ganttSvg = document.getElementById('gantt');
+        const ganttContainer =
+          document.getElementsByClassName('gantt-container')[0];
+        const parent = ganttContainer?.parentNode;
+        if (parent) {
+          ganttContainer.remove();
+          parent.appendChild(ganttSvg);
+        }
         let ganttChart = new Gantt('#gantt', tasks, options);
       }
     })();
@@ -107,7 +115,7 @@ export default function GanttChart({ tasks }) {
     <>
       <script src="/node_modules/frappe-gantt/dist/frappe-gantt.min.js" />
       {styles}
-      <svg id="gantt" ></svg>
+      <svg id="gantt"></svg>
     </>
   );
 }
