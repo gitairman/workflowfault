@@ -43,7 +43,7 @@ export default function ProjectDetail({ id }) {
       <div className="h-[50vh]">
         <GanttChart tasks={tasks} />
       </div>
-      <div className="flex justify-center h-[60vh] mt-[-50px]">
+      <div className="flex justify-center h-[60vh]">
         <ChatBoxSSE projectId={id} />
         <TasksContainer
           users={users}
