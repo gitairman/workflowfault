@@ -4,6 +4,7 @@ export default function Modal() {
   const [isOpen, setIsOpen] = useState(false);
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [userCompany, setUserCompany] = useState('');
 
   useEffect(() => {
     retrieveUsers();
@@ -36,10 +37,15 @@ export default function Modal() {
       alert("Error creating your project.");
     }
   };
+  
 
   const retrieveUsers = async () => {
+    const email = localStorage.getItem('email');
     try {
-      const response = await fetch("/api/users");
+      const response = await fetch("/api/users/company", {
+        method: "POST",
+        body: JSON.stringify({email: email})
+      });
       if (response.ok) {
         const usersData = await response.json();
         setUsers(usersData);
