@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import TaskDetails from './_TaskDetails';
 
 export default function TaskList({
@@ -8,6 +8,12 @@ export default function TaskList({
   handleTaskComplete,
 }) {
   const [taskDetails, setTaskDetails] = useState(null);
+  const [isFiltered, setIsFiltered] = useState(false);
+  const renderedTasks = useRef(tasks);
+
+  if (renderedTasks.current.length === 0 && isFiltered === false) renderedTasks.current = tasks;
+
+  console.log(renderedTasks.current);
 
   const handleClick = (task) => {
     const filtered = {
@@ -30,6 +36,19 @@ export default function TaskList({
     setTaskDetails(null);
   };
 
+  const handleMyTasks = async () => {
+    const userEmail = localStorage.getItem('email');
+    const res = await fetch(`/api/users/`);
+    const allUsers = await res.json();
+    const found = allUsers.find(u => u.email === userEmail);
+    renderedTasks.current = (tasks.filter(t => t.assigned_to === found.name))
+    setIsFiltered(true);
+  }
+
+  const handleAllTasks = () => {
+    renderedTasks.current = tasks;
+    setIsFiltered(false);
+  }
   return (
     <>
       <div className="flex flex-col h-full">
@@ -62,11 +81,13 @@ export default function TaskList({
                   <div className="overflow-y-auto">
                     <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white mt-2">
                       <tbody>
-                        {tasks.map((t) => (
+                        {renderedTasks.current.map((t) => (
                           <tr
                             onClick={() => handleClick(t)}
                             key={t.id}
-                            className={`${t.progress === 100 ? "bg-green-700" : ""} border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-white/10 dark:hover:bg-neutral-600 cursor-pointer`}>
+                            className={`${
+                              t.progress === 100 ? 'bg-green-700' : ''
+                            } border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-white/10 dark:hover:bg-neutral-600 cursor-pointer`}>
                             <td className="w-2/6 whitespace-nowrap border-e border-neutral-200 py-4 font-medium dark:border-white/10">
                               {t.name}
                             </td>
@@ -91,12 +112,28 @@ export default function TaskList({
                 />
               )}
               {!taskDetails && (
-                <div className="mt-auto py-4">
-                  <button
-                    onClick={() => handleShowNewTask(true)}
-                    className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">
-                    + Create New Task
-                  </button>
+                <div className="mt-auto flex justify-between">
+                  <div className="py-4 mr-2">
+                    <button
+                      onClick={() => handleShowNewTask(true)}
+                      className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">
+                      Create New Task
+                    </button>
+                  </div>
+                  <div className="ml-auto py-4">
+                    <button
+                      onClick={() => handleMyTasks()}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">
+                      My Tasks
+                    </button>
+                  </div>
+                  <div className="ml-2 py-4">
+                    <button
+                      onClick={() => handleAllTasks()}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">
+                      All Tasks
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
