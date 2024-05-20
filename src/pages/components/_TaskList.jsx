@@ -37,7 +37,7 @@ export default function TaskList({
             <div className="bg-gray-900 shadow-md rounded px-4 h-full flex flex-col justify-start">
               {!taskDetails ? (
                 <>
-                  <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white mt-4">
+                  <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white">
                     <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
                       <tr>
                         <th
