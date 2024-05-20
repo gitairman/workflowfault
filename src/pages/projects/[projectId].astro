@@ -1,11 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getProjectById } from '../../lib/projects';
-import { getUserByEmail } from '../../lib/users';
 import ProjectDetail from '../components/_ProjectDetail';
+import ProjectHead from '../components/_ProjectHead';
 const { params } = Astro;
 const projectId = params.projectId;
-console.log('inside project by id astro')
+console.log('inside project by id astro');
 
 const project = await getProjectById(projectId);
 if (!project) {
@@ -14,6 +14,7 @@ if (!project) {
     statusText: "Project not found",
   });
 }
+
 ---
 <script>
 	const token = localStorage.getItem('token');
@@ -24,44 +25,7 @@ if (!project) {
 </script>
 
 <Layout title="Project Details">
-  <div class="bg-gray-900 overflow-hidden shadow solid border">
-    <div class="border-t border-gray-200 px-4 sm:p-0">
-        <dl class="sm:divide-y sm:divide-gray-200">
-            <div class="py-2 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-white">
-                    Project name
-                </dt>
-                <dd class="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
-                    {project.title}
-                </dd>
-            </div>
-            <div class="py-2 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-white">
-                    Start Date
-                </dt>
-                <dd class="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
-                    {project.start}
-                </dd>
-            </div>
-            <div class="py-2 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-white">
-                    End date
-                </dt>
-                <dd class="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
-                    {project.end}
-                </dd>
-            </div>
-            <div class="py-2 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-white">
-                    Members:
-                </dt>
-                <dd class="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
-                    {project.users.map((user) => <a href={`/users/${user}`}>{user} </a>)}
-                </dd>
-            </div>
-        </dl>
-    </div>
-</div>
-  <ProjectDetail id={projectId} client:load/>
+    <ProjectHead {...project} id={projectId} client:idle/>
+    <ProjectDetail id={projectId} client:load/>
 </Layout>
   

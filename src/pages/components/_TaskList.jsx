@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TaskDetails from './_TaskDetails';
 
 export default function TaskList({
@@ -29,6 +29,7 @@ export default function TaskList({
   const handleClose = () => {
     setTaskDetails(null);
   };
+
   return (
     <>
       <div className="flex flex-col h-full">
@@ -94,7 +95,7 @@ export default function TaskList({
                   <button
                     onClick={() => handleShowNewTask(true)}
                     className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">
-                    Create New Task
+                    + Create New Task
                   </button>
                 </div>
               )}

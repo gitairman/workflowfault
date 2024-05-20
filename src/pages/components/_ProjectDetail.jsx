@@ -46,6 +46,7 @@ export default function ProjectDetail({ id }) {
       <div className="flex justify-center h-[60vh]">
         <ChatBoxSSE projectId={id} />
         <TasksContainer
+          projectId={id}
           users={users}
           tasks={tasks}
           handleNewTask={handleNewTask}
