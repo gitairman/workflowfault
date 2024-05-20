@@ -9,17 +9,20 @@ export default function TaskDetails({
   const [updatedTask, setUpdatedTask] = useState(task);
 
   const handleClickCompleted = async () => {
-    await onTaskComplete(task.id, { progress: 100, custom_class: "done" });
-    setUpdatedTask({...task, Progress: '100%' })
+    await onTaskComplete(task.id, { progress: 100, custom_class: 'done' });
+    setUpdatedTask({ ...task, Progress: '100%' });
   };
   const handleDeleteClick = async () => {
     await onDeleteTask(task.id);
     onCloseTask(null);
-  }
+  };
 
   return (
     <>
-      <table className="bg-green-700 min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white">
+      <table
+        className={`${
+          updatedTask.Progress === "100%" ? 'bg-green-700' : ''
+        } min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white`}>
         <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
           <tr>
             <th
