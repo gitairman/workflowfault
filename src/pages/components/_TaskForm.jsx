@@ -19,10 +19,12 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
         <div className="p-4 border-b bg-yellow-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
           <p className="text-lg font-semibold">New Task</p>
         </div>
-        <form onSubmit={onSubmit} className="px-4 overflow-y-auto max-h-[calc(100vh-50px)]">
+        <form
+          onSubmit={onSubmit}
+          className="flex flex-col px-4 overflow-y-auto h-[calc(100%-50px)]">
           <label
             htmlFor="name"
-            className="block text-gray-700 text-sm font-bold mb-2">
+            className="block text-gray-700 text-sm font-bold mb-2 mt-2">
             Name:
           </label>
           <input
@@ -32,7 +34,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
           />
           <label
             htmlFor="description"
-            className="block text-gray-700 text-sm font-bold mb-2">
+            className="block text-gray-700 text-sm font-bold mb-2 mt-2">
             Description:
           </label>
           <textarea
@@ -41,7 +43,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
 
-          <label htmlFor="start_date" className="text-gray-700">
+          <label htmlFor="start_date" className="text-gray-700 mt-2">
             Start Date:
           </label>
 
@@ -56,7 +58,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             />
           </div>
 
-          <label htmlFor="end_date" className="text-gray-700">
+          <label htmlFor="end_date" className="text-gray-700 mt-2">
             End Date:
           </label>
 
@@ -70,7 +72,7 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             />
           </div>
 
-          <fieldset className="py-3 text-gray-700">
+          <fieldset className="py-3 text-gray-700 mt-2">
             <div>
               Priority:{' '}
               <input
@@ -115,7 +117,9 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             ))}
           </select>
 
-          <label htmlFor="assigned_to" className="text-gray-700">Assigned To: </label>
+          <label htmlFor="assigned_to" className="text-gray-700 mt-2">
+            Assigned To:{' '}
+          </label>
           <select
             name="assigned_to"
             id="assigned_to"
@@ -128,16 +132,18 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
             ))}
           </select>
 
-          <button
-            type="submit"
-            className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300 my-5 mr-5">
-            Submit
-          </button>
-          <button
-            onClick={() => handleShowNewTask(false)}
-            className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">
-            Cancel
-          </button>
+          <div className="mt-auto">
+            <button
+              type="submit"
+              className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300 my-5 mr-5">
+              Submit
+            </button>
+            <button
+              onClick={() => handleShowNewTask(false)}
+              className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -6,8 +6,6 @@ export default function ChatBoxSSE( { projectId }) {
   const [user, setUser] = useState(null);
   const [chatColor, setChatColor] = useState('gray');
 
-  console.log('inside ChatBoxSSE');
-
   useEffect(() => {
     const retrieveMessages = async () => {
       const response = await fetch(`/api/messages/${projectId}`);

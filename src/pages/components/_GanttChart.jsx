@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 export default function GanttChart({ tasks }) {
-  console.log(tasks);
 
   useEffect(() => {
     (async () => {
