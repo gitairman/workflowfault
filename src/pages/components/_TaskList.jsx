@@ -65,7 +65,7 @@ export default function TaskList({
                           <tr
                             onClick={() => handleClick(t)}
                             key={t.id}
-                            className="border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-white/10 dark:hover:bg-neutral-600 cursor-pointer">
+                            className={`${t.progress === 100 ? "bg-green-700" : ""} border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-white/10 dark:hover:bg-neutral-600 cursor-pointer`}>
                             <td className="w-2/6 whitespace-nowrap border-e border-neutral-200 py-4 font-medium dark:border-white/10">
                               {t.name}
                             </td>

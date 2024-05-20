@@ -9,7 +9,7 @@ export default function TaskDetails({
   const [updatedTask, setUpdatedTask] = useState(task);
 
   const handleClickCompleted = async () => {
-    await onTaskComplete(task.id, { progress: 100 });
+    await onTaskComplete(task.id, { progress: 100, custom_class: "done" });
     setUpdatedTask({...task, Progress: '100%' })
   };
   const handleDeleteClick = async () => {
@@ -19,7 +19,7 @@ export default function TaskDetails({
 
   return (
     <>
-      <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white mt-6">
+      <table className="bg-green-700 min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white">
         <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
           <tr>
             <th
@@ -51,7 +51,7 @@ export default function TaskDetails({
           )}
         </tbody>
       </table>
-      <div className="py-4">
+      <div className="py-4 mt-auto">
         <button
           onClick={() => onCloseTask(null)}
           className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300 w-28">

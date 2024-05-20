@@ -54,45 +54,70 @@ export default function ChatBoxSSE( { projectId }) {
   }
 
   return (
-      <div className="bg-gray-900 shadow-md rounded-lg max-w-full w-full h-full">
-        <div className="p-4 border-b bg-yellow-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
-          <p className="text-lg font-semibold">Project Chat</p>
-          <form className="max-w-sm mx-0">
-            <select onChange={handleChat} id="chat_color" className="bg-gray-900 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <option value="gray">Default</option>
-              <option value="red">Red</option>
-              <option value="green">Green</option>
-              <option value="yellow">Yellow</option>
-              <option value="blue">Blue</option>
-            </select>
-          </form>
-        </div>
-        <div id="chatbox" className="p-4 overflow-y-auto h-[calc(100%-130px)]">
-          <ul id="messages" className="mb-2 text-right flex flex-col items-end h-full">
-            {messages.map((m) => (
-              <div className="mb-2 text-right" key={m._id}>
-                <span className="mr-3">{new Date(m.created_at).toLocaleString()} - {m.user || "user"} said:</span>
-                <p className={`bg-${m.chatColor || 'gray'}-500 text-white rounded-lg py-2 px-4 inline-block`}>
-                  {m.content}
-                </p>
-              </div>
-            ))}
-          </ul>
-        </div>
-        <form onSubmit={handleSubmit} id="chat" className="p-4 border-t flex h-[80px]">
-          <input
-            onChange={({ target }) => setMessage(target.value)}
-            id="message"
-            type="text"
-            value={message}
-            className="text-black w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
-          />
-          <button
-            type="submit"
-            className="bg-yellow-500 text-white px-4 py-2 rounded-r-md hover:bg-yellow-600 transition duration-300">
-            Send
-          </button>
+    <div className="bg-gray-900 shadow-md rounded-lg max-w-full w-full h-full">
+      <div className="p-4 border-b bg-yellow-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
+        <p className="text-lg font-semibold">Project Chat</p>
+        <form className="max-w-sm mx-0 flex items-center w-fit">
+          <label htmlFor="chat_color" className="w-fit mr-2">Message Colour:</label>
+          <select
+            onChange={handleChat}
+            id="chat_color"
+            className={`${`bg-${chatColor}-500`} h-[50%] w-fit border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}>
+            <option value="gray" className="bg-gray-500">
+              Default
+            </option>
+            <option value="red" className="bg-red-500">
+              Red
+            </option>
+            <option value="green" className="bg-green-500">
+              Green
+            </option>
+            <option value="yellow" className="bg-yellow-500">
+              Yellow
+            </option>
+            <option value="blue" className="bg-blue-500">
+              Blue
+            </option>
+          </select>
         </form>
       </div>
+      <div id="chatbox" className="p-4 overflow-y-auto h-[calc(100%-130px)]">
+        <ul
+          id="messages"
+          className="mb-2 text-right flex flex-col items-end h-full">
+          {messages.map((m) => (
+            <div className="mb-2 text-right" key={m._id}>
+              <span className="mr-3">
+                {new Date(m.created_at).toLocaleString()} - {m.user || 'user'}{' '}
+                said:
+              </span>
+              <p
+                className={`bg-${
+                  m.chatColor || 'gray'
+                }-500 text-white rounded-lg py-2 px-4 inline-block`}>
+                {m.content}
+              </p>
+            </div>
+          ))}
+        </ul>
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        id="chat"
+        className="p-4 border-t flex h-[80px]">
+        <input
+          onChange={({ target }) => setMessage(target.value)}
+          id="message"
+          type="text"
+          value={message}
+          className="text-black w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        />
+        <button
+          type="submit"
+          className="bg-yellow-500 text-white px-4 py-2 rounded-r-md hover:bg-yellow-600 transition duration-300">
+          Send
+        </button>
+      </form>
+    </div>
   );
 }

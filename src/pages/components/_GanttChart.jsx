@@ -75,6 +75,12 @@ export default function GanttChart({ tasks }) {
 .gantt .bar-wrapper.low .bar-progress {
   fill: hsl(50, 100%, 77%);
 }
+.gantt .bar-wrapper.done .bar {
+  fill: hsl(155, 67%, 45%);
+}
+.gantt .bar-wrapper.done .bar-progress {
+  fill: hsl(155, 67%, 45%);
+}
 
 /* hover state */
 .gantt .bar-wrapper.high:hover .bar-progress {
@@ -85,6 +91,9 @@ export default function GanttChart({ tasks }) {
 }
 .gantt .bar-wrapper.low:hover .bar-progress {
   fill: hsl(50, 100%, 77%);
+}
+.gantt .bar-wrapper.done:hover .bar-progress {
+  fill: hsl(116, 76%, 87%);
 }
 
 /* active state */
@@ -105,6 +114,12 @@ export default function GanttChart({ tasks }) {
 }
 .gantt .bar-wrapper.low.active .bar-progress {
   fill: hsl(50, 100%, 77%);
+}
+.gantt .bar-wrapper.done.active .bar {
+  fill: hsl(155, 67%, 45%);
+}
+.gantt .bar-wrapper.done.active .bar-progress {
+  fill: hsl(155, 67%, 45%);
 }
       `}
       </style>
