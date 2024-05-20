@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getProjectById } from '../../lib/projects';
-import { getUserByEmail } from '../../lib/users';
 import ProjectDetail from '../components/_ProjectDetail';
 import ProjectHead from '../components/_ProjectHead';
 const { params } = Astro;
@@ -15,6 +14,7 @@ if (!project) {
     statusText: "Project not found",
   });
 }
+
 ---
 <script>
 	const token = localStorage.getItem('token');
