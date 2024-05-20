@@ -5,6 +5,7 @@ export default function TaskList({ tasks, handleShowNewTask, handleDeleteTask, h
   const [taskDetails, setTaskDetails] = useState(null);
   const [showEditMembers, setShowEditMembers] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
+
   const handleClick = (task) => {
     const filtered = {
       id: task.id,
@@ -75,8 +76,12 @@ export default function TaskList({ tasks, handleShowNewTask, handleDeleteTask, h
   }
 
   const retrieveUsers = async () => {
+    const email = localStorage.getItem('email');
     try {
-      const response = await fetch("/api/users");
+      const response = await fetch("/api/users/company", {
+        method: "POST",
+        body: JSON.stringify({email: email})
+      });
       if (response.ok) {
         const usersData = await response.json();
         setAllUsers(usersData);
@@ -91,6 +96,8 @@ export default function TaskList({ tasks, handleShowNewTask, handleDeleteTask, h
   useEffect(() => {
     retrieveUsers();
   }, [])
+
+  const nonProjectMembers = allUsers.filter(user => !users.some(u => u.email === user.email));
   return (
     <>
       <div className="flex flex-col h-full">
@@ -176,7 +183,7 @@ export default function TaskList({ tasks, handleShowNewTask, handleDeleteTask, h
                       <form className="max-w-sm mx-auto" onSubmit={addMember}>
                         <label htmlFor="countries" className="block mb-2 text-sm font-medium dark:text-black">Select members to add:</label>
                         <select multiple id="all_members_multiple" className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            {allUsers.map((u, i) => (
+                            {nonProjectMembers.map((u, i) => (
                             <option key={i} value={u.email}>
                             {u.name}
                             </option>
@@ -199,7 +206,7 @@ export default function TaskList({ tasks, handleShowNewTask, handleDeleteTask, h
                           - Remove Member
                         </button>
                       </form>
-                      <div className="p-2 flex justify-evenly">
+                      <div className="p-2">
                         <button onClick={() => toggleShowEditMembers()} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
                             Close
                         </button>
