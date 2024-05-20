@@ -2,7 +2,7 @@ import { useState } from 'react';
 import TaskForm from './_TaskForm';
 import TaskList from './_TaskList';
 
-export default function TasksContainer({ users, tasks, handleNewTask, handleTaskComplete, handleDeleteTask }) {
+export default function TasksContainer({ users, tasks, handleNewTask, handleTaskComplete, handleDeleteTask, projectId }) {
   const [showNewTask, setShowNewTask] = useState(false);
   const [task, setTask] = useState(null);
 
@@ -10,6 +10,8 @@ export default function TasksContainer({ users, tasks, handleNewTask, handleTask
     <div className="w-full">
       {!showNewTask && (
         <TaskList
+          projectId={projectId}
+          users={users}
           tasks={tasks}
           handleShowNewTask={setShowNewTask}
           handleShowDetails={setTask}

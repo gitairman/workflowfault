@@ -1,6 +1,6 @@
 // src/pages/api/projects.js
 
-import { createProject, getAllProjects } from "../../lib/projects";
+import { createProject, getAllProjects } from "../../../lib/projects";
 
 export const GET = async () => {
   const projects = await getAllProjects();
