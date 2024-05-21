@@ -27,13 +27,11 @@ export default function ProjectDetail({ id }) {
   };
 
   const handleDeleteTask = async (taskId) => {
-    console.log(taskId);
     await deleteTask(taskId);
     await getAndSet(id, 'tasks', setTasks);
   };
 
   const handleTaskComplete = async (taskId, data) => {
-    console.log('inside handleTaskComplete', taskId, data)
     await updateTask(taskId, data);
     await getAndSet(id, 'tasks', setTasks);
   };

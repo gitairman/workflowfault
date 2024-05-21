@@ -15,7 +15,6 @@ export default function ProjectHead({id, ...project}) {
   
   const toggleShowEditMembers = () => {
     setShowEditMembers(!showEditMembers);
-    console.log(users);
   }
 
   const addMember = async (e) => {

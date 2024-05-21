@@ -3,12 +3,8 @@
 import { getUsersByProjectId } from '../../../../lib/users';
 
 export const GET = async (req) => {
-  console.log('inside get users by project id api');
-  console.log(req);
   const id = req.params.projectId;
-  console.log(id);
   const users = await getUsersByProjectId(id);
-  console.log(users);
   if (!users) {
     return new Response(null, {
       status: 404,

@@ -1,5 +1,4 @@
 export default function LoginForm() {
-  console.log("inside LoginForm");
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);

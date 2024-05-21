@@ -21,7 +21,6 @@ export const updateTaskById = async (id, data) => {
 };
 
 export const deleteTaskById = async (id) => {
-  console.log('inside deleteTaskById', id);
   const res = await (await Tasks()).deleteOne({ id });
   return res;
 }

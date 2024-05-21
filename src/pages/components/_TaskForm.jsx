@@ -6,8 +6,6 @@ export default function TaskForm({ users, tasks, handleSubmit, handleShowNewTask
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  console.log(startDate.toISOString().slice(0, 10))
-
   const onSubmit = (e) => {
     handleSubmit(e, startDate, endDate);
     handleShowNewTask(false);

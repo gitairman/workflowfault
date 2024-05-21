@@ -5,7 +5,6 @@ import ProjectDetail from '../components/_ProjectDetail';
 import ProjectHead from '../components/_ProjectHead';
 const { params } = Astro;
 const projectId = params.projectId;
-console.log('inside project by id astro');
 
 const project = await getProjectById(projectId);
 if (!project) {

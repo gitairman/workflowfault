@@ -17,7 +17,6 @@ export const addTask = async (e, sD, eD, project_id) => {
       project_id,
     }
   );
-  console.log(data);
   await fetch('/api/tasks', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -26,7 +25,6 @@ export const addTask = async (e, sD, eD, project_id) => {
 };
 
 export const updateTask = async (id, data) => {
-  console.log('inside updateTask', id, data);
     await fetch(`/api/tasks/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({id, data}),
@@ -34,7 +32,6 @@ export const updateTask = async (id, data) => {
 }
 
 export const deleteTask = async (id) => {
-  console.log('inside deleteTask', id);
       await fetch(`/api/tasks/${id}`, {
         method: 'DELETE',
       });

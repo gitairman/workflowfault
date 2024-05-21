@@ -69,11 +69,9 @@ export const generateSessionToken = (user) => {
 };
 
 export const getUsersByProjectId = async (id) => {
-  console.log('inside getUsersByProjectId', id);
   const users = await (await Users())
     .find({ projects: { $in: [id] } })
     .toArray();
-  console.log('inside getUsersByProjectId', users);
   return users;
 };
 

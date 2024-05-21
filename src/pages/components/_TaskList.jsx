@@ -14,8 +14,6 @@ export default function TaskList({
 
   if (renderedTasks.current.length === 0 && isFiltered === false) renderedTasks.current = tasks;
 
-  console.log(renderedTasks.current);
-
   const handleClick = (task) => {
     const filtered = {
       id: task.id,
