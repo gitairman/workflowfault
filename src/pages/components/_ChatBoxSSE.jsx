@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export default function ChatBoxSSE( { projectId }) {
+export default function ChatBoxSSE({ projectId }) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState(null);
   const [chatColor, setChatColor] = useState('gray');
+  const [isNewMsg, setIsNewMsg] = useState(false);
 
   useEffect(() => {
     const retrieveMessages = async () => {
@@ -30,33 +31,47 @@ export default function ChatBoxSSE( { projectId }) {
     return () => eventSource.close();
   }, []);
 
-  useEffect(() => {
-    const lastMsg = document.querySelector('ul').lastElementChild;
+  const scrollToLastMsg = () => {
+    const lastMsg = document.getElementById('messages').lastElementChild;
     if (lastMsg) lastMsg.scrollIntoView();
+  };
+
+  useEffect(() => {
+    if (isNewMsg) scrollToLastMsg();
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch('/api/chat', {
       method: 'POST',
-      body: JSON.stringify({ message, user, project_id: projectId, chatColor }),
+      body: JSON.stringify({
+        message,
+        user,
+        project_id: projectId,
+        chatColor,
+      }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
     setMessage('');
+    setIsNewMsg(true);
   };
 
   const handleChat = (e) => {
-   setChatColor(e.target.value)
-  }
+    setChatColor(e.target.value);
+  };
 
   return (
-    <div className="bg-gray-900 shadow-md rounded-lg max-w-full w-full h-full">
+    <div
+      className="bg-gray-900 shadow-md rounded-lg max-w-full w-full h-full"
+      onClick={() => scrollToLastMsg()}>
       <div className="p-4 border-b bg-yellow-500 text-white rounded-t-lg flex justify-between items-center h-[50px]">
         <p className="text-lg font-semibold">Project Chat</p>
         <form className="max-w-sm mx-0 flex items-center w-fit">
-          <label htmlFor="chat_color" className="w-fit mr-2">Message Colour:</label>
+          <label htmlFor="chat_color" className="w-fit mr-2">
+            Message Colour:
+          </label>
           <select
             onChange={handleChat}
             id="chat_color"
