@@ -10,6 +10,7 @@ export default function TasksContainer({ users, tasks, handleNewTask, handleTask
     <div className="w-full">
       {!showNewTask && (
         <TaskList
+          users={users}
           tasks={tasks}
           handleShowNewTask={setShowNewTask}
           handleShowDetails={setTask}
