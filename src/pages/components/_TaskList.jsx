@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import TaskDetails from './_TaskDetails';
 
 export default function TaskList({
+  users,
   tasks,
   handleShowNewTask,
   handleDeleteTask,
@@ -38,9 +39,7 @@ export default function TaskList({
 
   const handleMyTasks = async () => {
     const userEmail = localStorage.getItem('email');
-    const res = await fetch(`/api/users/`);
-    const allUsers = await res.json();
-    const found = allUsers.find(u => u.email === userEmail);
+    const found = users.find(u => u.email === userEmail);
     renderedTasks.current = (tasks.filter(t => t.assigned_to === found.name))
     setIsFiltered(true);
   }
