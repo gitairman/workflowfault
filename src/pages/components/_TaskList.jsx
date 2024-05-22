@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import TaskDetails from './_TaskDetails';
+import _ from 'lodash';
 
 export default function TaskList({
   users,
@@ -10,9 +11,8 @@ export default function TaskList({
 }) {
   const [taskDetails, setTaskDetails] = useState(null);
   const [isFiltered, setIsFiltered] = useState(false);
-  const renderedTasks = useRef(tasks);
-
-  if (renderedTasks.current.length === 0 && isFiltered === false) renderedTasks.current = tasks;
+  const [allTasks, setAllTasks] = useState(tasks);
+  const [filteredTasks, setFilteredTasks] = useState([]);
 
   const handleClick = (task) => {
     const filtered = {
@@ -37,15 +37,26 @@ export default function TaskList({
 
   const handleMyTasks = async () => {
     const userEmail = localStorage.getItem('email');
-    const found = users.find(u => u.email === userEmail);
-    renderedTasks.current = (tasks.filter(t => t.assigned_to === found.name))
+    const found = users.find((u) => u.email === userEmail);
+    const filteredTasks = tasks.filter((t) => t.assigned_to === found.name);
+    setFilteredTasks(filteredTasks);
     setIsFiltered(true);
-  }
+  };
 
   const handleAllTasks = () => {
-    renderedTasks.current = tasks;
     setIsFiltered(false);
+  };
+
+  let renderedTasks;
+
+  if (!_.isEqual(allTasks, tasks)) {
+    setAllTasks(tasks);
+    if (isFiltered) handleMyTasks();
   }
+
+  if (isFiltered) renderedTasks = filteredTasks;
+  else renderedTasks = allTasks;
+
   return (
     <>
       <div className="flex flex-col h-full">
@@ -78,7 +89,7 @@ export default function TaskList({
                   <div className="overflow-y-auto">
                     <table className="min-w-full border border-neutral-200 text-center text-sm font-light text-surface dark:border-white/10 dark:text-white mt-2">
                       <tbody>
-                        {renderedTasks.current.map((t) => (
+                        {renderedTasks.map((t) => (
                           <tr
                             onClick={() => handleClick(t)}
                             key={t.id}

@@ -5,7 +5,7 @@ export default function GanttChart({ tasks }) {
   useEffect(() => {
     (async () => {
       const options = {
-        bar_height: 25, // height of the task bar
+        bar_height: 30, // height of the task bar
         bar_corner_radius: 20, // border radius of bar
         arrow_curve: 10, // curve of the arrow
         padding: 20,
