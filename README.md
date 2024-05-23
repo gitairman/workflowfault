@@ -20,3 +20,20 @@ WorkflowVault is a comprehensive project management and employee tracking platfo
 ## Commissioned By
 
 - Ben Ottoman
+
+## Technology Stack
+
+- Astro.build
+- ReactJS
+- TailwindCSS
+- MongoDB
+- Netlify
+
+## Screenshots and Videos
+
+![Home Page](screenshots/homepage.png)
+![Login Page](screenshots/login.png)
+![Register Page](screenshots/register.png)
+![Dashboard Page](screenshots/dashboard.png)
+
+![Project Detail video](https://youtu.be/sIncAnQXV5M)
