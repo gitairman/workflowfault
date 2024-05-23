@@ -36,4 +36,4 @@ WorkflowVault is a comprehensive project management and employee tracking platfo
 ![Register Page](screenshots/register.png)
 ![Dashboard Page](screenshots/dashboard.png)
 
-![Project Detail video](https://youtu.be/sIncAnQXV5M)
+[![Project Detail video]](https://youtu.be/sIncAnQXV5M)
